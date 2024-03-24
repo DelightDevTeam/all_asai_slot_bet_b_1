@@ -1,0 +1,97 @@
+.tabs {
+    width: 120px;
+    /* height: 90px; */
+    border-radius: 10px;
+    margin-bottom: 7px;
+    background: linear-gradient(-45deg, #000, #333);
+    box-shadow: 0 2px 5px #000;
+    color: goldenrod;
+    text-shadow: 0 0 2px gold;
+    text-align: center;
+    padding: 0;
+}
+
+.tab-imgs {
+    margin-top: 8px;
+}
+
+.nav {
+    padding: 0 !important;
+
+}
+
+.tab-imgs {
+    height: 30px;
+    object-fit: cover;
+}
+
+@media screen and (max-width:1010px) {
+    .tabs {
+        width: 90px;
+    }
+
+
+}
+
+@media screen and (max-width:900px) {
+    .tabs {
+        height: 70px;
+    }
+}
+
+@media screen and (min-width:576px) {}
+
+@media screen and (max-width:576px) {
+    .tabs {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width:575px) {}
+
+
+
+@media screen and (max-width:400px) {
+    .row span {
+        font-size: 12px !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-pills .nav-link {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .tab-imgs {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .tabs {
+        height: 60px;
+        width: 70px;
+    }
+}
+
+@media screen and (max-width:300px) {
+    .nav-link {
+        padding: 5px 0 5px 5px !important;
+    }
+}
+
+.nav-pills .nav-link.active {
+    background: linear-gradient(-45deg, rgb(232, 185, 97), rgb(240, 202, 132));
+    color: #333;
+    font-weight: 700;
+    text-shadow: 0 0 1px #000;
+}
+
+.text-title {
+    font-weight: 700;
+    padding: 5px 0 5px 0;
+    background-color: #111;
+    border: 2px solid gold;
+
+}
