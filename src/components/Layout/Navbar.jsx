@@ -1,10 +1,8 @@
-
 import React from 'react';
 import '../../assets/css/navbar.css';
 import logo from '../../assets/img/logo.png';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 
 import home from '../../assets/img/home.png';
 import promotion from '../../assets/img/promotion.png';
@@ -23,18 +21,36 @@ const Navbar = () => {
     { id: 4, img: tele, title: 'Telegram', link: '/' },
   ];
 
-
   const sidebars = [
     { id: 1, font: '', title: 'ဂိမ်းအားလုံး', link: '/' },
     // { id: 2, font: 'fa-solid fa-building-columns', title: 'ငွေသွင်းရန်', link: '/topup' },
-    { id: 3, font: 'fa-solid fa-clipboard-list', title: 'ငွေသွင်းငွေထုတ်စာရင်း', link: '/history' },
-    { id: 4, font: 'fa-solid fa-gamepad', title: 'ဂိမ်းမှတ်တမ်း', link: '/game-log' },
-    { id: 5, font: 'fa-solid fa-user-pen', title: 'လျှိ့ဝှက်နံပါတ်ပြောင်းရန်', link: '/change-password' },
+    {
+      id: 3,
+      font: 'fa-solid fa-clipboard-list',
+      title: 'ငွေသွင်းငွေထုတ်စာရင်း',
+      link: '/history',
+    },
+    {
+      id: 4,
+      font: 'fa-solid fa-gamepad',
+      title: 'ဂိမ်းမှတ်တမ်း',
+      link: '/game-log',
+    },
+    {
+      id: 5,
+      font: 'fa-solid fa-user-pen',
+      title: 'လျှိ့ဝှက်နံပါတ်ပြောင်းရန်',
+      link: '/change-password',
+    },
     // { id: 6, font: 'fa-solid fa-coins', title: 'ငွေထုတ်ရန်', link: '/withdraw' },
     // {id:7,font:'fa-solid fa-file-invoice',title:'ငွေသွင်း/ထုတ်မှတ်တမ်း',link:'/'},
-    { id: 7, font: 'fa-solid fa-arrow-right-from-bracket', title: 'ထွက်ရန်', link: '/' },
-  ]
-
+    {
+      id: 7,
+      font: 'fa-solid fa-arrow-right-from-bracket',
+      title: 'ထွက်ရန်',
+      link: '/',
+    },
+  ];
 
   const [show, setShow] = useState(false);
 
@@ -48,7 +64,7 @@ const Navbar = () => {
           onClick={handleShow}
           className='bg-transparent'
         >
-          <i class='fa-solid fa-bars'></i>
+          <i className='fa-solid fa-bars'></i>
         </Button>
         <NavLink to={'/'}>
           <img src={logo} />
@@ -60,12 +76,13 @@ const Navbar = () => {
           {navs.map((nav) => {
             return (
               <NavLink
+                key={nav.id} // Add key here
                 style={{
                   background: '#2D2D2D',
                   border: '2px solid #431F76',
                   width: '100px',
                 }}
-                className='rounded-bottom-4   py-1 text-decoration-none text-center text-light '
+                className='rounded-bottom-4 py-1 text-decoration-none text-center text-light'
                 to={nav.link}
               >
                 <img style={{ width: '30px', height: '30px' }} src={nav.img} />
@@ -99,7 +116,11 @@ const Navbar = () => {
           <ul style={{ listStyleType: 'none' }}>
             {sidebars.map((sidebar) => {
               return (
-                <li className='my-4 fw-bold' style={{ fontSize: '16px' }}>
+                <li
+                  key={sidebar.id}
+                  className='my-4 fw-bold'
+                  style={{ fontSize: '16px' }}
+                >
                   <Link
                     to={sidebar.link}
                     id={sidebar.id}

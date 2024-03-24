@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -26,19 +26,18 @@ const Carousel = () => {
           clickable: true,
         }}
         modules={[EffectFade, Navigation, Pagination]}
-        className="mySwiper d-xs-block"
+        className='mySwiper d-xs-block'
       >
-        {
-          banners.map((banner) => {
-            return <SwiperSlide>
-              <img src={banner} className="w-100" />
+        {banners.map((banner) => {
+          return (
+            <SwiperSlide>
+              <img src={banner} className='w-100' />
             </SwiperSlide>
-          })
-        }
-
+          );
+        })}
       </Swiper>
     </>
-  )
-}
+  );
+};
 
 export default Carousel;

@@ -102,8 +102,8 @@ const Topup = () => {
                 );
               })}
               <p className='text-success fw-bold'>
-                <i class='fa-regular fa-circle-check'></i> ဘဏ်အားလုံးအတွက် အခမဲ့
-                ငွေလွှဲခ
+                <i className='fa-regular fa-circle-check'></i> ဘဏ်အားလုံးအတွက်
+                အခမဲ့ ငွေလွှဲခ
               </p>
             </Card.Body>
           </Card>

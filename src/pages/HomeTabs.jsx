@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import '../assets/css/tab.css';
 import Carouselslidetwo from './../components/Layout/Carouselslidetwo';
 // import fishbackground from '../../assets/img/fishbackground';
@@ -41,7 +41,7 @@ import sport5 from '../assets/img/game/sport5.png';
 import sport6 from '../assets/img/game/sport6.png';
 
 import { useSearchParams } from 'react-router-dom';
-import '../assets/css/tab.css'
+import '../assets/css/tab.css';
 import { NavLink } from 'react-router-dom';
 const HomeTabs = () => {
   const [searchParams] = useSearchParams();
@@ -61,8 +61,8 @@ const HomeTabs = () => {
     { id: 4, img: lotto1, title: 'lotto1' },
     { id: 5, img: lotto3, title: 'lotto3' },
     { id: 6, img: sport1, title: 'sport1' },
-    { id: 7, img: sport2, title: 'sport2' }
-  ]
+    { id: 7, img: sport2, title: 'sport2' },
+  ];
   const casinoContents = [
     { id: 1, img: casino1, title: 'casino1' },
     { id: 2, img: casino2, title: 'casino2' },
@@ -70,13 +70,11 @@ const HomeTabs = () => {
     { id: 4, img: casino4, title: 'casino4' },
     { id: 5, img: casino5, title: 'casino5' },
     { id: 6, img: casino6, title: 'casino6' },
-
-  ]
+  ];
   const lottoContents = [
     { id: 1, img: lotto1, title: 'lotto1' },
     { id: 2, img: lotto3, title: 'lotto3' },
-
-  ]
+  ];
   const slotContents = [
     { id: 1, img: slot1, title: 'slot1' },
     { id: 2, img: slot2, title: 'slot2' },
@@ -85,8 +83,7 @@ const HomeTabs = () => {
     { id: 4, img: slot4, title: 'slot4' },
     { id: 5, img: slot5, title: 'slot5' },
     { id: 6, img: slot6, title: 'slot6' },
-
-  ]
+  ];
   const sportContents = [
     { id: 1, img: sport1, title: 'sport1' },
     { id: 2, img: sport2, title: 'sport2' },
@@ -94,108 +91,158 @@ const HomeTabs = () => {
     { id: 4, img: sport4, title: 'sport4' },
     { id: 5, img: sport5, title: 'sport5' },
     { id: 6, img: sport6, title: 'sport6' },
-
-  ]
-
+  ];
 
   return (
-    <div className='px-2 mt-4' >
-      <Tab.Container id="left-tabs-example" defaultActiveKey={Number(searchParams.get('tab')) || 1} >
+    <div className='px-2 mt-4'>
+      <Tab.Container
+        id='left-tabs-example'
+        defaultActiveKey={Number(searchParams.get('tab')) || 1}
+      >
         <Row>
-          <Col xs={2} md={2} lg={1} className=' '  >
-            <Nav variant="pills" className="flex-column  pt-4" style={{ minHeight: '100vh' }}>
-              <Nav.Item>
-                {tabs.map((tab) => {
-                  return <NavLink className='text-decoration-none mb-2  ' to={tab.link}>
-                    <Nav.Link href={tab.link} eventKey={tab.id} className='tabs'>
-                      <img src={tab.img} alt="" className='tab-imgs' />
-                      <div className=' '>{tab.title}</div>
+          <Col xs={2} md={2} lg={1} className=' '>
+            <Nav
+              variant='pills'
+              className='flex-column  pt-4'
+              style={{ minHeight: '100vh' }}
+            >
+              {tabs.map((tab, index) => {
+                return (
+                  <Nav.Item key={index}>
+                    <Nav.Link
+                      className='text-decoration-none mb-2 tabs'
+                      to={tab.link}
+                      eventKey={tab.id}
+                    >
+                      <img src={tab.img} alt='' className='tab-imgs' />
+                      <div>{tab.title}</div>
                     </Nav.Link>
-                  </NavLink>
-
-                })}
-              </Nav.Item>
+                  </Nav.Item>
+                );
+              })}
             </Nav>
           </Col>
-          <Col xs={9} md={10} className='ps-4 ms-3 ms-sm-0 ms-lg-5 p-0 ' >
+          <Col xs={9} md={10} className='ps-4 ms-3 ms-sm-0 ms-lg-5 p-0 '>
             <Tab.Content>
               <Carouselslidetwo></Carouselslidetwo>
               <div className='text-center mt-4 mt-lg-0'>
                 <h3 className='text-title'>
-                  {searchParams.get('tab') == '' ? 'All Games' :
-                    searchParams.get('tab') == 1 ? 'All Games' :
-                      searchParams.get('tab') == 2 ? 'Casino' :
-                        searchParams.get('tab') == 3 ? 'Lotto' :
-                          searchParams.get('tab') == 4 ? 'Slot' :
-                            searchParams.get('tab') == 5 ? 'Sport' :
-                              'Home'
-                  }
+                  {searchParams.get('tab') == ''
+                    ? 'All Games'
+                    : searchParams.get('tab') == 1
+                    ? 'All Games'
+                    : searchParams.get('tab') == 2
+                    ? 'Casino'
+                    : searchParams.get('tab') == 3
+                    ? 'Lotto'
+                    : searchParams.get('tab') == 4
+                    ? 'Slot'
+                    : searchParams.get('tab') == 5
+                    ? 'Sport'
+                    : 'Home'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={1}>
-                <div className="row">
-                  {homeContents.map((data) => {
-                    return <div className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '>
-                      <span>{data.title}</span>
-                      <img style={{ width: '100%', height: '80%' }}
-                        className='rounded  img-fluid   ' src={data.img} />
-                    </div>
+                <div className='row'>
+                  {homeContents.map((data, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                      >
+                        <span>{data.title}</span>
+                        <img
+                          style={{ width: '100%', height: '80%' }}
+                          className='rounded  img-fluid   '
+                          src={data.img}
+                        />
+                      </div>
+                    );
                   })}
                 </div>
               </Tab.Pane>
               <Tab.Pane className='container ' eventKey={2}>
-                <div className="row">
-                  {casinoContents.map((data) => {
-                    return <div className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2  '>
-                      <span>{data.title}</span>
-                      <img style={{ width: '100%', height: '80%' }}
-                        className='rounded  img-fluid   ' src={data.img} />
-                    </div>
+                <div className='row'>
+                  {casinoContents.map((data, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2  '
+                      >
+                        <span>{data.title}</span>
+                        <img
+                          style={{ width: '100%', height: '80%' }}
+                          className='rounded  img-fluid   '
+                          src={data.img}
+                        />
+                      </div>
+                    );
                   })}
                 </div>
               </Tab.Pane>
               <Tab.Pane className='container ' eventKey={4}>
-                <div className="row">
-                  {slotContents.map((data) => {
-                    return <div className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '>
-                      <span>{data.title}</span>
-                      <img
-                        style={{ width: '100%', height: '80%' }}
-                        className='rounded  img-fluid   ' src={data.img} />
-                    </div>
+                <div className='row'>
+                  {slotContents.map((data, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                      >
+                        <span>{data.title}</span>
+                        <img
+                          style={{ width: '100%', height: '80%' }}
+                          className='rounded  img-fluid   '
+                          src={data.img}
+                        />
+                      </div>
+                    );
                   })}
                 </div>
               </Tab.Pane>
               <Tab.Pane className='container ' eventKey={3}>
-                <div className="row">
-                  {lottoContents.map((data) => {
-                    return <div className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '>
-                      <span>{data.title}</span>
-                      <img style={{ width: '100%', height: '80%' }}
-                        className='rounded  img-fluid   ' src={data.img} />
-                    </div>
+                <div className='row'>
+                  {lottoContents.map((data, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                      >
+                        <span>{data.title}</span>
+                        <img
+                          style={{ width: '100%', height: '80%' }}
+                          className='rounded  img-fluid   '
+                          src={data.img}
+                        />
+                      </div>
+                    );
                   })}
                 </div>
               </Tab.Pane>
               <Tab.Pane className='container ' eventKey={5}>
-                <div className="row">
-                  {sportContents.map((data) => {
-                    return <div className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '>
-                      <span>{data.title}</span>
-                      <img style={{ width: '100%', height: '80%' }}
-                        className='rounded  img-fluid   ' src={data.img} />
-                    </div>
+                <div className='row'>
+                  {sportContents.map((data, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                      >
+                        <span>{data.title}</span>
+                        <img
+                          style={{ width: '100%', height: '80%' }}
+                          className='rounded  img-fluid   '
+                          src={data.img}
+                        />
+                      </div>
+                    );
                   })}
                 </div>
               </Tab.Pane>
-
-
             </Tab.Content>
           </Col>
         </Row>
       </Tab.Container>
     </div>
-  )
-}
+  );
+};
 
 export default HomeTabs;
