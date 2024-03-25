@@ -12,6 +12,9 @@ import tele from '../../assets/img/tele.png';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { FaUser } from "react-icons/fa";
+import { LuLogIn } from "react-icons/lu";
+import { LuWallet } from "react-icons/lu";
 
 const Navbar = () => {
   const navs = [
@@ -138,6 +141,20 @@ const Navbar = () => {
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
+      <div style={{ cursor: 'pointer' }} className="mb-0 mb-md-4   mb-xl-0 d-flex align-items-center gap-4">
+        <div className="d-flex align-items-center gap-1">
+          <FaUser />
+          <span>ID:123</span>
+        </div>
+        <div className="d-flex align-items-center gap-1">
+          <LuWallet size={23} />
+          <span>1000MMK</span>
+        </div>
+        <div  >
+          <LuLogIn size={23} />
+
+        </div>
+      </div>
     </header>
   );
 };

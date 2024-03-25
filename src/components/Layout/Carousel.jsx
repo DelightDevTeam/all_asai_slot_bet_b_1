@@ -14,7 +14,7 @@ import carousel2 from '../../assets/img/carousel/carousel2.gif';
 import carousel3 from '../../assets/img/carousel/carousel3.gif';
 import carousel4 from '../../assets/img/carousel/carousel4.gif';
 import useFetch from '../../hooks/useFetch';
-import BASE_URL from '../../hooks/baseUrl';
+import BASE_URL from '../../hooks/baseURL';
 
 const Carousel = () => {
   // const banners = [carousel1, carousel2, carousel3, carousel4];

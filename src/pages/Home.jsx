@@ -9,8 +9,8 @@ import Home from '../components/Layout/Home';
 const HomePage = () => {
   return (
     <>
-    <Carousel></Carousel>
-    <Home></Home>
+      <Carousel></Carousel>
+      <Home></Home>
     </>
   )
 }

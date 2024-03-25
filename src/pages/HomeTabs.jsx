@@ -95,6 +95,9 @@ const HomeTabs = () => {
 
   return (
     <div className='px-2 mt-4'>
+      <div className="py-2 px-sm-5">
+        <Carouselslidetwo></Carouselslidetwo>
+      </div>
       <Tab.Container
         id='left-tabs-example'
         defaultActiveKey={Number(searchParams.get('tab')) || 1}
@@ -124,22 +127,22 @@ const HomeTabs = () => {
           </Col>
           <Col xs={9} md={10} className='ps-4 ms-3 ms-sm-0 ms-lg-5 p-0 '>
             <Tab.Content>
-              <Carouselslidetwo></Carouselslidetwo>
+
               <div className='text-center mt-4 mt-lg-0'>
                 <h3 className='text-title'>
                   {searchParams.get('tab') == ''
                     ? 'All Games'
                     : searchParams.get('tab') == 1
-                    ? 'All Games'
-                    : searchParams.get('tab') == 2
-                    ? 'Casino'
-                    : searchParams.get('tab') == 3
-                    ? 'Lotto'
-                    : searchParams.get('tab') == 4
-                    ? 'Slot'
-                    : searchParams.get('tab') == 5
-                    ? 'Sport'
-                    : 'Home'}
+                      ? 'All Games'
+                      : searchParams.get('tab') == 2
+                        ? 'Casino'
+                        : searchParams.get('tab') == 3
+                          ? 'Lotto'
+                          : searchParams.get('tab') == 4
+                            ? 'Slot'
+                            : searchParams.get('tab') == 5
+                              ? 'Sport'
+                              : 'Home'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={1}>
