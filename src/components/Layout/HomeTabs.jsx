@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/css/tab.css';
 import Carouselslidetwo from './Carouselslidetwo';
 import Col from 'react-bootstrap/Col';
@@ -9,7 +9,7 @@ import { useSearchParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 const HomeTabs = () => {
-  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState('sport');
 
   const tabs = [
     { id: 1, img: home, title: 'home', link: '/' },
@@ -51,6 +51,7 @@ const HomeTabs = () => {
               <Nav.Item>
                 {tabs.map((tab) => (
                   <Nav.Link
+                    onClick={() => setActiveTab(tab.title)}
                     key={tab.id}
                     href={tab.link}
                     eventKey={tab.id}
@@ -68,17 +69,18 @@ const HomeTabs = () => {
               <Carouselslidetwo></Carouselslidetwo>
               <div className='text-center'>
                 <h3 className='text-title'>
-                  {searchParams.get('tab') == 1
+
+                  {activeTab === 'home'
                     ? 'Home'
-                    : searchParams.get('tab') == 2
-                    ? 'Casino'
-                    : searchParams.get('tab') == 3
-                    ? 'Lotto'
-                    : searchParams.get('tab') == 4
-                    ? 'Slot'
-                    : searchParams.get('tab') == 5
-                    ? 'Sport'
-                    : 'Home'}
+                    : activeTab === 'casino'
+                      ? 'Casino'
+                      : activeTab === 'lotto'
+                        ? 'Lotto'
+                        : activeTab === 'slot'
+                          ? 'Slot'
+                          : activeTab === 'sport'
+                            ? 'Sport'
+                            : 'Home'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={2}>

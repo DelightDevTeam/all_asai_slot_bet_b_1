@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/css/tab.css';
 import Carouselslidetwo from './../components/Layout/Carouselslidetwo';
 // import fishbackground from '../../assets/img/fishbackground';
@@ -44,7 +44,7 @@ import { useSearchParams } from 'react-router-dom';
 import '../assets/css/tab.css';
 import { NavLink } from 'react-router-dom';
 const HomeTabs = () => {
-  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState('home');
   const tabs = [
     { id: 1, img: home, title: 'All', link: '?tab=1' },
     { id: 2, img: casino, title: 'Casino', link: '?tab=2' },
@@ -100,7 +100,7 @@ const HomeTabs = () => {
       </div>
       <Tab.Container
         id='left-tabs-example'
-        defaultActiveKey={Number(searchParams.get('tab')) || 1}
+        defaultActiveKey={1}
       >
         <Row>
           <Col xs={2} md={2} lg={1} className=' '>
@@ -113,6 +113,7 @@ const HomeTabs = () => {
                 return (
                   <Nav.Item key={index}>
                     <Nav.Link
+                      onClick={() => setActiveTab(tab.title)}
                       className='text-decoration-none mb-2 tabs'
                       to={tab.link}
                       eventKey={tab.id}
@@ -130,19 +131,17 @@ const HomeTabs = () => {
 
               <div className='text-center mt-1 mt-lg-0'>
                 <h3 className='text-title'>
-                  {searchParams.get('tab') == ''
-                    ? 'All Games'
-                    : searchParams.get('tab') == 1
-                      ? 'All Games'
-                      : searchParams.get('tab') == 2
-                        ? 'Casino'
-                        : searchParams.get('tab') == 3
-                          ? 'Lotto'
-                          : searchParams.get('tab') == 4
-                            ? 'Slot'
-                            : searchParams.get('tab') == 5
-                              ? 'Sport'
-                              : 'Home'}
+                  {activeTab === 'All'
+                    ? 'Home'
+                    : activeTab === 'Casino'
+                      ? 'Casino'
+                      : activeTab === 'Lotto'
+                        ? 'Lotto'
+                        : activeTab === 'Slot'
+                          ? 'Slot'
+                          : activeTab === 'Sport'
+                            ? 'Sport'
+                            : 'Home'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={1}>
