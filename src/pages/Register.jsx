@@ -6,11 +6,11 @@ import { NavLink } from 'react-router-dom';
 const RegisterPage = () => {
   const banks=['KBZ Bank','KPAY','CB Bank','AYA Bank','Wave Money','Yoma Bank']
   return (
-    <div className='my-5 login py-3 py-sm-5 w-50 mx-auto'>
+    <div className=' px-2  py-3 w-50 mx-auto w-100'>
         <div className="text-center">
-          <img src={logo} className='logo' />
+          <img src={logo} className='logo w-50' />
         </div>
-        <h1>အကောင့်ဖွင့်ရန်</h1>
+        <h3>အကောင့်ဖွင့်ရန်</h3>
         <Form className="mx-3 mx-md-5 my-3 my-sm-5">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label> နာမည်</Form.Label>

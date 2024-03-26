@@ -1,8 +1,9 @@
 .promotionHeader{
-    background-color: #383838;
-    background-image: url('../img/promotion.svg');
+    /* background-color: #383838; */
+    /* background-image: url('../img/promotion.svg'); */
     max-width: max-content;
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
+    text-shadow: 2px 2px 2px #89c453;
     cursor: pointer;
 }
 .promotionImg{

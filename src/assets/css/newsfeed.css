@@ -50,7 +50,7 @@
 }
 @media screen and (max-width:660px) {
     .bank{
-        height: 60px;
+        height: 50px;
     }
 }
 @media screen and (max-width:630px) {
@@ -65,7 +65,7 @@
 }
 @media screen and (max-width:510px) {
     .bank{
-        height: 50px;
+        height: 40px;
     }
 }
 @media screen and (max-width:450px) {
@@ -75,7 +75,7 @@
 }
 @media screen and (max-width:440px) {
     .bank{
-        height: 40px;
+        height: 30px;
     }
 }
 @media screen and (max-width:360px) {
@@ -85,6 +85,6 @@
 }
 @media screen and (max-width:350px) {
     .bank{
-        height: 30px;
+        height: 25px;
     }
 }
