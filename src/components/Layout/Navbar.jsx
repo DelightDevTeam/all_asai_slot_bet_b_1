@@ -122,8 +122,8 @@ const Navbar = () => {
         >
           <i className='fa-solid fa-bars'></i>
         </Button>
-        <NavLink to={'/'}>
-          <img src={logo} />
+        <NavLink to={'/'} >
+          <img src={logo} className='logoImg' />
         </NavLink>
       </div>
 

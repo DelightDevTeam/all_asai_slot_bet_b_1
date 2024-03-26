@@ -1,15 +1,12 @@
-.login{
-    background: linear-gradient(182deg,#6831ab,#1f0e41),url('../img/login.png') 50%;
-    box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0.3rem 0.3rem 5rem rgb(0 0 0), 0 0 0.8rem #fff, 0 0 1.8rem #1e0204, inset 0 0 1.3rem #000;    border: 1px solid #fff;
+.login {
+    background: linear-gradient(182deg, #6831ab, #1f0e41), url('../img/login.png') 50%;
+    box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0.3rem 0.3rem 5rem rgb(0 0 0), 0 0 0.8rem #fff, 0 0 1.8rem #1e0204, inset 0 0 1.3rem #000;
+    border: 1px solid #fff;
     border-radius: 15px;
     width: 50%;
 }
-.logo{
-    height: 100px;
-    width: 50%;
-    object-fit: cover;
-}
-.login h1{
+
+.login h1 {
     margin-top: 40px;
     font-size: 24px;
     font-weight: 600;
@@ -17,16 +14,19 @@
     padding-bottom: 10px;
     border-bottom: 2px solid white;
 }
-.input-group-text{
+
+.input-group-text {
     background: #292037 !important;
     color: #fff !important;
     padding: 15px !important;
 }
-input{
+
+input {
     background: #06162a !important;
-    color: #fff !important ;
+    color: #fff !important;
 }
-.loginBtn{
+
+.loginBtn {
     background: goldenrod;
     color: #fff;
     font-weight: 600;
@@ -36,13 +36,15 @@ input{
     font-size: 20px;
     border: 2px solid rgb(142, 105, 12) !important;
 }
+
 @media screen and (max-width:650px) {
-    .login{
-        width: 80% !important; 
+    .login {
+        width: 80% !important;
     }
 }
-@media screen and (max-width:430px){
-    .logo{
+
+@media screen and (max-width:430px) {
+    .logo {
         width: 80%;
     }
 }

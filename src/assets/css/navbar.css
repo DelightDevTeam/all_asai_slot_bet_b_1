@@ -6,13 +6,15 @@ header {
     box-shadow: 0 0 10px #000 !important;
 }
 
-header img {
-    margin-left: 10px;
-    height: 60px;
-    width: auto;
-    border-radius: 100%;
+.logoImg {
     border: 2px solid #E09F52;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    margin-left: 10px;
 }
+
+
 
 .userInfo span {
     font-weight: 600;
@@ -53,8 +55,9 @@ header img {
         font-size: 14px !important;
     }
 
-    header img {
-        height: 55px;
+    .logoImg {
+        height: 50px;
+        width: 50px;
     }
 
     .userInfo {
