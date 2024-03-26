@@ -29,7 +29,7 @@ const Carouselslidetwo = () => {
   // console.log(banners);
   return (
     <Swiper
-      className=' my-sm-4'
+      className=' my-sm-2'
       spaceBetween={50}
       breakpoints={{
         250: {
