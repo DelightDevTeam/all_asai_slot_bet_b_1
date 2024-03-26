@@ -10,8 +10,8 @@ import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   const footerAfterLogin = [
-    { id: 1, icon: <TbHome size={25} />, link: '/', title: 'အိမ်' },
-    { id: 2, icon: <ImGift size={25} />, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
+    { id: 1, icon: <TbHome size={25} />, link: '/', title: 'Home' },
+    { id: 2, icon: <ImGift size={25} />, link: '/promotion', title: 'Promotion' },
     { id: 4, icon: <RiHistoryFill size={25} />, link: '/history', title: 'History' },
     { id: 5, icon: <GoLog size={25} />, link: '/game-log', title: 'Game Log' },
   ];
@@ -21,11 +21,12 @@ const Footer = () => {
       {footerAfterLogin.map((item) => (
         <NavLink
           key={item.id}
-          className='text-decoration-none text-center text-light'
+          className='text-decoration-none text-center'
+          style={{color:'#ebc171'}}
           to={item.link}
         >
           {item.icon}
-          <p>{item.title}</p>
+          <p style={{textShadow:'1px 1px 1px #89c453'}}>{item.title}</p>
         </NavLink>
       ))}
     </footer>

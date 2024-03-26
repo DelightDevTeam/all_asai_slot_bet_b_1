@@ -125,7 +125,7 @@ marquee {
 
 .nav-pills .nav-link.active {
     background: linear-gradient(-45deg, rgb(232, 185, 97), rgb(240, 202, 132));
-    color: #333;
+    color: #00393A;
     font-weight: 700;
     text-shadow: 0 0 1px #000;
 }
@@ -133,7 +133,8 @@ marquee {
 .text-title {
     font-weight: 700;
     padding: 5px 0 5px 0;
-    background-color: #111;
-    border: 2px solid #E09F52;
+    /* background-color: #111; */
+    /* border-bottom: 2px solid #E09F52; */
+    text-shadow: 3px 3px 3px #E09F52;
 
 }

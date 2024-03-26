@@ -172,7 +172,7 @@ const Navbar = () => {
         style={{ color: '#ccc' }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className='fw-bold'>
+          <Offcanvas.Title className='fw-bold' style={{fontSize:'16px'}}>
             အသေးစိတ်အချက်လက်များ
           </Offcanvas.Title>
         </Offcanvas.Header>
@@ -183,7 +183,7 @@ const Navbar = () => {
                 <li
                   key={sidebar.id}
                   className='my-4 fw-bold'
-                  style={{ fontSize: '16px' }}
+                  style={{ fontSize: '12px' }}
                 >
                   <Link
                     to={sidebar.link}
