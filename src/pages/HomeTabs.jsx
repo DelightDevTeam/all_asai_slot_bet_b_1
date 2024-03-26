@@ -32,6 +32,7 @@ import slot3 from '../assets/img/game/slot3.png';
 import slot4 from '../assets/img/game/slot4.png';
 import slot5 from '../assets/img/game/slot5.png';
 import slot6 from '../assets/img/game/slot6.png';
+import { AiFillSound } from "react-icons/ai";
 
 import sport1 from '../assets/img/game/sport1.png';
 import sport2 from '../assets/img/game/sport2.png';
@@ -95,8 +96,14 @@ const HomeTabs = () => {
 
   return (
     <div className='px-2 mt-sm-4'>
-      <div className="py-2 px-sm-5">
+      <div className="pt-2 px-sm-5">
         <Carouselslidetwo></Carouselslidetwo>
+        <div className="marqueeContainer mt-1 mt-sm-0 mb-sm-2">
+          <AiFillSound className='sound' />
+          <marquee className='' >
+            <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium quae saepe, alias ad maiores neque obcaecati ipsa adipisci eligendi, illo ut dicta, eaque quaerat ipsam ullam dolorum libero nulla amet.</span>
+          </marquee>
+        </div>
       </div>
       <Tab.Container
         id='left-tabs-example'
