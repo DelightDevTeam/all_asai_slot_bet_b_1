@@ -1,18 +1,18 @@
 import React from 'react';
 import '../../assets/css/footer.css';
-import { FaHome } from 'react-icons/fa';
-import { FaGift } from 'react-icons/fa6';
-import { GrProjects } from 'react-icons/gr';
-import { IoIosPaper } from 'react-icons/io';
-import { FaHistory } from 'react-icons/fa';
+import home from '../../assets/img/home.svg';
+import gift from '../../assets/img/gift.svg';
+import history from '../../assets/img/history.svg';
+import gameLog from '../../assets/img/gameLog.svg';
+
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   const footerAfterLogin = [
-    { id: 1, icon: <FaHome />, link: '/', title: 'အိမ်' },
-    { id: 2, icon: <FaGift />, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
-    { id: 4, icon: <FaHistory />, link: '/history', title: 'History' },
-    { id: 5, icon: <IoIosPaper />, link: '/game-log', title: 'Game Log' },
+    { id: 1, img: home, link: '/', title: 'အိမ်' },
+    { id: 2, img: gift, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
+    { id: 4, img: history, link: '/history', title: 'History' },
+    { id: 5, img: gameLog, link: '/game-log', title: 'Game Log' },
   ];
 
   return (
@@ -23,7 +23,7 @@ const Footer = () => {
           className='text-decoration-none text-center text-light'
           to={item.link}
         >
-          {item.icon}
+          <img src={item.img} style={{ width: "30px", height: '30px' }} />
           <p>{item.title}</p>
         </NavLink>
       ))}

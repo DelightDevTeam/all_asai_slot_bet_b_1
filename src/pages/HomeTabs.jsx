@@ -94,7 +94,7 @@ const HomeTabs = () => {
   ];
 
   return (
-    <div className='px-2 mt-4'>
+    <div className='px-2 mt-sm-4'>
       <div className="py-2 px-sm-5">
         <Carouselslidetwo></Carouselslidetwo>
       </div>
@@ -128,7 +128,7 @@ const HomeTabs = () => {
           <Col xs={9} md={10} className='ps-4 ms-3 ms-sm-0 ms-lg-5 p-0 '>
             <Tab.Content>
 
-              <div className='text-center mt-4 mt-lg-0'>
+              <div className='text-center mt-1 mt-lg-0'>
                 <h3 className='text-title'>
                   {searchParams.get('tab') == ''
                     ? 'All Games'

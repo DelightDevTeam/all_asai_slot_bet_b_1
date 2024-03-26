@@ -1,5 +1,7 @@
 footer {
-    background: linear-gradient(180deg, #6831ab, #1f0e41);
+    background: linear-gradient(to bottom right, #00393A, #005D5F);
+    /* For older browsers */
+    background: -webkit-linear-gradient(top left, #00393A, #005D5F);
     border-top: 2px solid #ccbf80;
     position: fixed;
     bottom: 0;

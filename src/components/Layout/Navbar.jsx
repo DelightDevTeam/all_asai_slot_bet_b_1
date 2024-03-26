@@ -8,6 +8,11 @@ import home from '../../assets/img/home.png';
 import promotion from '../../assets/img/promotion.png';
 import viber from '../../assets/img/viber.png';
 import tele from '../../assets/img/tele.png';
+import games from '../../assets/img/games.svg';
+import transfer from '../../assets/img/transfer.svg';
+import password from '../../assets/img/password.svg';
+import gameHistory from '../../assets/img/gameHistory.svg';
+import logout from '../../assets/img/logout.svg';
 
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -25,23 +30,23 @@ const Navbar = () => {
   ];
 
   const sidebars = [
-    { id: 1, font: '', title: 'ဂိမ်းအားလုံး', link: '/' },
+    { id: 1, img: games, title: 'ဂိမ်းအားလုံး', link: '/' },
     // { id: 2, font: 'fa-solid fa-building-columns', title: 'ငွေသွင်းရန်', link: '/topup' },
     {
       id: 3,
-      font: 'fa-solid fa-clipboard-list',
+      img: transfer,
       title: 'ငွေသွင်းငွေထုတ်စာရင်း',
       link: '/history',
     },
     {
       id: 4,
-      font: 'fa-solid fa-gamepad',
+      img: gameHistory,
       title: 'ဂိမ်းမှတ်တမ်း',
       link: '/game-log',
     },
     {
       id: 5,
-      font: 'fa-solid fa-user-pen',
+      img: password,
       title: 'လျှိ့ဝှက်နံပါတ်ပြောင်းရန်',
       link: '/change-password',
     },
@@ -49,7 +54,7 @@ const Navbar = () => {
     // {id:7,font:'fa-solid fa-file-invoice',title:'ငွေသွင်း/ထုတ်မှတ်တမ်း',link:'/'},
     {
       id: 7,
-      font: 'fa-solid fa-arrow-right-from-bracket',
+      img: logout,
       title: 'ထွက်ရန်',
       link: '/',
     },
@@ -60,7 +65,7 @@ const Navbar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <header className='py-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
+    <header className='py-2 py-sm-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
       <div>
         <Button
           variant='primary'
@@ -82,7 +87,9 @@ const Navbar = () => {
                 key={nav.id} // Add key here
                 style={{
                   background: '#2D2D2D',
-                  border: '2px solid #431F76',
+                  borderLeft: '2px solid #E09F52',
+                  borderRight: '2px solid #E09F52',
+                  borderBottom: '2px solid #E09F52',
                   width: '100px',
                 }}
                 className='rounded-bottom-4 py-1 text-decoration-none text-center text-light'
@@ -99,6 +106,9 @@ const Navbar = () => {
         <NavLink to={'/login'}>
           <button className=' navLoginBtn'>လော့ဂ်အင်</button>
         </NavLink>
+        <div className='d-sm-none ' >
+          <LuLogIn size={23} />
+        </div>
         {/* <NavLink to={'/register'}>
           <button className='navRegisterBtn'>မှတ်ပုံတင်</button>
         </NavLink> */}
@@ -107,7 +117,7 @@ const Navbar = () => {
       <Offcanvas
         show={show}
         onHide={handleClose}
-        className='bg-dark'
+        className=' '
         style={{ color: '#ccc' }}
       >
         <Offcanvas.Header closeButton>
@@ -129,10 +139,11 @@ const Navbar = () => {
                     id={sidebar.id}
                     style={{ color: '#ccc', textDecoration: 'none' }}
                   >
-                    <i
+                    {/* <i
                       className={sidebar.font}
                       style={{ fontSize: '20px' }}
-                    ></i>
+                    ></i> */}
+                    <img style={{ width: '30px', height: '30px' }} src={sidebar.img} />
                     <span className='ms-4'>{sidebar.title}</span>
                   </Link>
                 </li>
@@ -141,7 +152,7 @@ const Navbar = () => {
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
-      <div style={{ cursor: 'pointer' }} className="mb-0 mb-md-4   mb-xl-0 d-flex align-items-center gap-4">
+      <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4">
         <div className="d-flex align-items-center gap-1">
           <FaUser />
           <span>ID:123</span>
@@ -150,10 +161,10 @@ const Navbar = () => {
           <LuWallet size={23} />
           <span>1000MMK</span>
         </div>
-        <div  >
+        <div className='d-none d-sm-flex' >
           <LuLogIn size={23} />
-
         </div>
+
       </div>
     </header>
   );
