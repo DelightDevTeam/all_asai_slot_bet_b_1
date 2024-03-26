@@ -8,11 +8,11 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 
-import home from '../assets/img/sidemenu/home.png';
-import casino from '../assets/img/sidemenu/casino.png';
-import lotto from '../assets/img/sidemenu/lotto.png';
-import slot from '../assets/img/sidemenu/slot.png';
-import sport from '../assets/img/sidemenu/sport.png';
+import home from '../assets/img/sidemenu/home2.png';
+import casino from '../assets/img/sidemenu/casino2.png';
+import lotto from '../assets/img/sidemenu/lotto2.png';
+import slot from '../assets/img/sidemenu/slot2.png';
+import sport from '../assets/img/sidemenu/sport2.png';
 import viber from '../assets/img/sidemenu/viber.png';
 import telegram from '../assets/img/sidemenu/telegram.png';
 

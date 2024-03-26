@@ -91,7 +91,10 @@ marquee {
     }
 
     .tab-imgs {
-        margin-top: 5px;
+        margin-top: 10px;
+        height: 25px;
+        width: 25px;
+
     }
 
     marquee {
