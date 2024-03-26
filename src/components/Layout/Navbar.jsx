@@ -8,6 +8,9 @@ import home from '../../assets/img/home.png';
 import promotion from '../../assets/img/promotion.png';
 import viber from '../../assets/img/viber.png';
 import tele from '../../assets/img/tele.png';
+import { IoGridOutline } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+
 
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -15,14 +18,18 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FaUser } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
 import { LuWallet } from "react-icons/lu";
+import { HiOutlineCash } from "react-icons/hi";
+import { LuNewspaper } from "react-icons/lu";
+import { MdOutlineLockClock } from "react-icons/md";
+
 import useFetch from "../../hooks/useFetch";
 import BASE_URL from '../../hooks/baseURL';
 
 const Navbar = () => {
   const auth = localStorage.getItem('token');
-  const{data:authUser} = useFetch(BASE_URL + '/user');
-  const[user, setUser] = useState(authUser);
-  const[smallLoad,setSmallLoad] = useState(false);
+  const { data: authUser } = useFetch(BASE_URL + '/user');
+  const [user, setUser] = useState(authUser);
+  const [smallLoad, setSmallLoad] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,23 +47,23 @@ const Navbar = () => {
   ];
 
   const sidebars = [
-    { id: 1, font: '', title: 'ဂိမ်းအားလုံး', link: '/' },
+    { id: 1, icon: <IoGridOutline size={25} />, title: 'ဂိမ်းအားလုံး', link: '/' },
     // { id: 2, font: 'fa-solid fa-building-columns', title: 'ငွေသွင်းရန်', link: '/topup' },
     {
       id: 3,
-      font: 'fa-solid fa-clipboard-list',
+      icon: <HiOutlineCash size={25} />,
       title: 'ငွေသွင်းငွေထုတ်စာရင်း',
       link: '/history',
     },
     {
       id: 4,
-      font: 'fa-solid fa-gamepad',
+      icon: <LuNewspaper size={25} />,
       title: 'ဂိမ်းမှတ်တမ်း',
       link: '/game-log',
     },
     {
       id: 5,
-      font: 'fa-solid fa-user-pen',
+      icon: <MdOutlineLockClock size={25} />,
       title: 'လျှိ့ဝှက်နံပါတ်ပြောင်းရန်',
       link: '/change-password',
     },
@@ -64,7 +71,7 @@ const Navbar = () => {
     // {id:7,font:'fa-solid fa-file-invoice',title:'ငွေသွင်း/ထုတ်မှတ်တမ်း',link:'/'},
     {
       id: 7,
-      font: 'fa-solid fa-arrow-right-from-bracket',
+      icon: <IoMdLogOut size={25} />,
       title: 'ထွက်ရန်',
       link: '/',
     },
@@ -106,7 +113,7 @@ const Navbar = () => {
       });
   };
   return (
-    <header className='py-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
+    <header className='py-2 py-sm-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
       <div>
         <Button
           variant='primary'
@@ -128,7 +135,9 @@ const Navbar = () => {
                 key={nav.id} // Add key here
                 style={{
                   background: '#2D2D2D',
-                  border: '2px solid #431F76',
+                  borderLeft: '2px solid #E09F52',
+                  borderRight: '2px solid #E09F52',
+                  borderBottom: '2px solid #E09F52',
                   width: '100px',
                 }}
                 className='rounded-bottom-4 py-1 text-decoration-none text-center text-light'
@@ -142,10 +151,13 @@ const Navbar = () => {
             );
           })}
         </div>
-        {!auth && (
+        {!auth && (<>
           <NavLink to={'/login'}>
             <button className=' navLoginBtn'>လော့ဂ်အင်</button>
           </NavLink>
+          <div className='d-sm-none ' >
+            <LuLogIn size={23} />
+          </div></>
         )}
 
         {/* <NavLink to={'/register'}>
@@ -156,7 +168,7 @@ const Navbar = () => {
       <Offcanvas
         show={show}
         onHide={handleClose}
-        className='bg-dark'
+        className=' '
         style={{ color: '#ccc' }}
       >
         <Offcanvas.Header closeButton>
@@ -178,11 +190,12 @@ const Navbar = () => {
                     id={sidebar.id}
                     style={{ color: '#ccc', textDecoration: 'none' }}
                   >
-                    <i
+                    {/* <i
                       className={sidebar.font}
                       style={{ fontSize: '20px' }}
-                    ></i>
-                    <span className='ms-4'>{sidebar.title}</span>
+                    ></i> */}
+                    {sidebar.icon}
+                    <span className='ms-2 ms-sm-4'>{sidebar.title}</span>
                   </Link>
                 </li>
               );
@@ -190,25 +203,20 @@ const Navbar = () => {
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
-      <div style={{ cursor: 'pointer' }} className="mb-0 mb-md-4   mb-xl-0 d-flex align-items-center gap-4">
-        
-        {auth && (
-          <>
-            <div className="d-flex align-items-center gap-1">
-              <FaUser />
-              <span>{ auth && user.user_name }</span>
-            </div>
-            <div className="d-flex align-items-center gap-1">
-              <LuWallet size={23} />
-              <span>K{parseFloat(user.balance).toLocaleString()}</span>
-            </div>
-            <div>
-              <LuLogIn size={23} onClick={logOut} />
-            </div>
-          </>
-            
-        )}
-        
+      <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4 userInfo">
+        <div className="d-flex align-items-center gap-1">
+          <FaUser />
+          <span>ID:123</span>
+        </div>
+        <div className="d-flex align-items-center gap-1">
+          <LuWallet size={23} />
+          <span>1000MMK</span>
+        </div>
+        <div className='d-none d-sm-flex' >
+          <LuLogIn size={23} />
+        </div>
+
+
       </div>
     </header>
   );

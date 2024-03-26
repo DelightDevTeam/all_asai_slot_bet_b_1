@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
 
+
 body {
-    background-image: url('./assets/img/bg.png');
+    /* background-image: url('./assets/img/bg.png'); */
+    background: #00393A;
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,4 +18,8 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
     display: none !important;
+}
+
+.offcanvas {
+    background: linear-gradient(to bottom, #002F30, #003F40) !important;
 }

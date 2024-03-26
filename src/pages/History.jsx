@@ -4,9 +4,6 @@ import '../assets/css/history.css'
 
 const HistoryPage = () => {
     const [param, setParam] = useState("today");
-
-
-
     return (
         <div className='py-4 container'>
             <h1 className="mb-5 text-center text-light">History</h1>

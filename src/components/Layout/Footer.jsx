@@ -1,18 +1,19 @@
 import React from 'react';
 import '../../assets/css/footer.css';
-import { FaHome } from 'react-icons/fa';
-import { FaGift } from 'react-icons/fa6';
-import { GrProjects } from 'react-icons/gr';
-import { IoIosPaper } from 'react-icons/io';
-import { FaHistory } from 'react-icons/fa';
+import { TbHome } from "react-icons/tb";
+import { ImGift } from "react-icons/im";
+import { RiHistoryFill } from "react-icons/ri";
+import { GoLog } from "react-icons/go";
+
+
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   const footerAfterLogin = [
-    { id: 1, icon: <FaHome />, link: '/', title: 'အိမ်' },
-    { id: 2, icon: <FaGift />, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
-    { id: 4, icon: <FaHistory />, link: '/history', title: 'History' },
-    { id: 5, icon: <IoIosPaper />, link: '/game-log', title: 'Game Log' },
+    { id: 1, icon: <TbHome size={25} />, link: '/', title: 'အိမ်' },
+    { id: 2, icon: <ImGift size={25} />, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
+    { id: 4, icon: <RiHistoryFill size={25} />, link: '/history', title: 'History' },
+    { id: 5, icon: <GoLog size={25} />, link: '/game-log', title: 'Game Log' },
   ];
 
   return (
