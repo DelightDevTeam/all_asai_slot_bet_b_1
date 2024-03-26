@@ -6,11 +6,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
 import carousel1 from '../../assets/img/carousel/carousel1.png';
 import carousel2 from '../../assets/img/carousel/carousel2.png';
 import carousel3 from '../../assets/img/carousel/carousel3.png';
 import carousel4 from '../../assets/img/carousel/carousel4.png';
+
 import useFetch from '../../hooks/useFetch';
 import BASE_URL from '../../hooks/baseURL';
 

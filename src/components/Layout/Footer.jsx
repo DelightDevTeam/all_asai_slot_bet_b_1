@@ -1,18 +1,19 @@
 import React from 'react';
 import '../../assets/css/footer.css';
-import home from '../../assets/img/home.svg';
-import gift from '../../assets/img/gift.svg';
-import history from '../../assets/img/history.svg';
-import gameLog from '../../assets/img/gameLog.svg';
+import { TbHome } from "react-icons/tb";
+import { ImGift } from "react-icons/im";
+import { RiHistoryFill } from "react-icons/ri";
+import { GoLog } from "react-icons/go";
+
 
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   const footerAfterLogin = [
-    { id: 1, img: home, link: '/', title: 'အိမ်' },
-    { id: 2, img: gift, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
-    { id: 4, img: history, link: '/history', title: 'History' },
-    { id: 5, img: gameLog, link: '/game-log', title: 'Game Log' },
+    { id: 1, icon: <TbHome size={25} />, link: '/', title: 'အိမ်' },
+    { id: 2, icon: <ImGift size={25} />, link: '/promotion', title: 'ပရိုမိုးရှင်း' },
+    { id: 4, icon: <RiHistoryFill size={25} />, link: '/history', title: 'History' },
+    { id: 5, icon: <GoLog size={25} />, link: '/game-log', title: 'Game Log' },
   ];
 
   return (
@@ -23,7 +24,7 @@ const Footer = () => {
           className='text-decoration-none text-center text-light'
           to={item.link}
         >
-          <img src={item.img} style={{ width: "30px", height: '30px' }} />
+          {item.icon}
           <p>{item.title}</p>
         </NavLink>
       ))}

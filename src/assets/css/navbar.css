@@ -14,6 +14,10 @@ header img {
     border: 2px solid #E09F52;
 }
 
+.userInfo span {
+    font-weight: 600;
+}
+
 .btn-close {
     --bs-btn-close-bg: url('../img/closeBtn.png') !important;
     background-image: url('../img/closeBtn.png') !important;
@@ -51,5 +55,14 @@ header img {
 
     header img {
         height: 55px;
+    }
+
+    .userInfo {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+
+    .userInfo span {
+        font-size: 13px;
     }
 }
