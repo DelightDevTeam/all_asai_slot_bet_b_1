@@ -7,10 +7,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-import carousel1 from '../../assets/img/carousel/carousel1.gif';
-import carousel2 from '../../assets/img/carousel/carousel2.gif';
-import carousel3 from '../../assets/img/carousel/carousel3.gif';
-import carousel4 from '../../assets/img/carousel/carousel4.gif';
 import useFetch from '../../hooks/useFetch';
 import BASE_URL from '../../hooks/baseURL';
 
@@ -26,7 +22,7 @@ const Carouselslidetwo = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log(banners);
+  // console.log(banners);
   return (
     <Swiper
       className=' my-4'

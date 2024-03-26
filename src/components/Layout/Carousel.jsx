@@ -9,15 +9,10 @@ import 'swiper/css/navigation';
 
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 
-import carousel1 from '../../assets/img/carousel/carousel1.gif';
-import carousel2 from '../../assets/img/carousel/carousel2.gif';
-import carousel3 from '../../assets/img/carousel/carousel3.gif';
-import carousel4 from '../../assets/img/carousel/carousel4.gif';
 import useFetch from '../../hooks/useFetch';
 import BASE_URL from '../../hooks/baseURL';
 
 const Carousel = () => {
-  // const banners = [carousel1, carousel2, carousel3, carousel4];
   const { data: banners, loading, error } = useFetch(BASE_URL + '/banner');
 
   if (loading) {
@@ -28,7 +23,7 @@ const Carousel = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log(banners);
+  // console.log(banners);
   return (
     <>
       <Swiper
@@ -41,7 +36,7 @@ const Carousel = () => {
         modules={[EffectFade, Navigation, Pagination]}
         className='mySwiper d-xs-block'
       >
-        {banners.map((banner, index) => {
+        {banners && banners.map((banner, index) => {
           return (
             <SwiperSlide key={index}>
               <img

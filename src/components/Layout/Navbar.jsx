@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../assets/css/navbar.css';
 import logo from '../../assets/img/logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import home from '../../assets/img/home.png';
@@ -15,8 +15,23 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FaUser } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
 import { LuWallet } from "react-icons/lu";
+import useFetch from "../../hooks/useFetch";
+import BASE_URL from '../../hooks/baseURL';
 
 const Navbar = () => {
+  const auth = localStorage.getItem('token');
+  const{data:authUser} = useFetch(BASE_URL + '/user');
+  const[user, setUser] = useState(authUser);
+  const[smallLoad,setSmallLoad] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth) {
+      setUser(authUser);
+    }
+  }, [authUser]);
+
+  // console.log(user);
   const navs = [
     { id: 1, img: home, title: 'အိမ်', link: '/' },
     { id: 2, img: promotion, title: 'ပရိုမိုးရှင်း', link: '/promotion' },
@@ -59,6 +74,37 @@ const Navbar = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const logOut = (e) => {
+    e.preventDefault();
+    setSmallLoad(true);
+    //fetch api for logout url
+    fetch(BASE_URL + "/logout", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Logout failed");
+        }
+        setSmallLoad(true);
+        return response.json();
+      })
+      .then((data) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("authUser");
+        // alert("Logged Out Successfully.");
+        setSmallLoad(false);
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  };
   return (
     <header className='py-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
       <div>
@@ -96,9 +142,12 @@ const Navbar = () => {
             );
           })}
         </div>
-        <NavLink to={'/login'}>
-          <button className=' navLoginBtn'>လော့ဂ်အင်</button>
-        </NavLink>
+        {!auth && (
+          <NavLink to={'/login'}>
+            <button className=' navLoginBtn'>လော့ဂ်အင်</button>
+          </NavLink>
+        )}
+
         {/* <NavLink to={'/register'}>
           <button className='navRegisterBtn'>မှတ်ပုံတင်</button>
         </NavLink> */}
@@ -142,18 +191,24 @@ const Navbar = () => {
         </Offcanvas.Body>
       </Offcanvas>
       <div style={{ cursor: 'pointer' }} className="mb-0 mb-md-4   mb-xl-0 d-flex align-items-center gap-4">
-        <div className="d-flex align-items-center gap-1">
-          <FaUser />
-          <span>ID:123</span>
-        </div>
-        <div className="d-flex align-items-center gap-1">
-          <LuWallet size={23} />
-          <span>1000MMK</span>
-        </div>
-        <div  >
-          <LuLogIn size={23} />
-
-        </div>
+        
+        {auth && (
+          <>
+            <div className="d-flex align-items-center gap-1">
+              <FaUser />
+              <span>{ auth && user.user_name }</span>
+            </div>
+            <div className="d-flex align-items-center gap-1">
+              <LuWallet size={23} />
+              <span>K{parseFloat(user.balance).toLocaleString()}</span>
+            </div>
+            <div>
+              <LuLogIn size={23} onClick={logOut} />
+            </div>
+          </>
+            
+        )}
+        
       </div>
     </header>
   );

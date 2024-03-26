@@ -108,6 +108,8 @@ const LoginPage = () => {
                 placeholder='Username'
                 aria-label='Username'
                 aria-describedby='basic-addon1'
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
               />
             </InputGroup>
             {error.user_name && (
@@ -125,6 +127,7 @@ const LoginPage = () => {
                 placeholder='Password'
                 aria-label='Password'
                 aria-describedby='basic-addon1'
+                value={password} onChange={(e) => setPassword(e.target.value)}
               />
             </InputGroup>
             {error.password && (
