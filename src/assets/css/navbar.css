@@ -55,6 +55,13 @@ header {
     padding: 5px 10px;
 }
 
+@media screen and (max-width:450px) {
+    .userInfo {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+}
+
 @media screen and (max-width:380px) {
     .navLoginBtn {
         font-size: 13px !important;
@@ -65,10 +72,7 @@ header {
         width: 50px;
     }
 
-    .userInfo {
-        width: 100%;
-        justify-content: space-between !important;
-    }
+
 
     .userInfo span {
         font-size: 13px;

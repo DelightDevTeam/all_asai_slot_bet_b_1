@@ -36,13 +36,12 @@ footer img {
 
 @media screen and (max-width:400px) {
     p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     svg {
         width: 20px;
         height: 20px;
     }
-
 
 }

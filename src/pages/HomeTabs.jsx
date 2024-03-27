@@ -113,7 +113,7 @@ const HomeTabs = () => {
           <Col xs={2} md={2} lg={1} className=' '>
             <Nav
               variant='pills'
-              className='flex-column  pt-4 mt-5'
+              className='flex-column  pt-4 mt-1'
               style={{ minHeight: '100vh' }}
             >
               {tabs.map((tab, index) => {
@@ -137,18 +137,18 @@ const HomeTabs = () => {
             <Tab.Content>
 
               <div className='text-center mt-1 mt-lg-0'>
-                <h3 className='text-title'>
+                <h3 className='text-title mb-0 '>
                   {activeTab === 'All'
-                    ? 'Home'
+                    ? 'HOME'
                     : activeTab === 'Casino'
-                      ? 'Casino'
+                      ? 'CASINO'
                       : activeTab === 'Lotto'
-                        ? 'Lotto'
+                        ? 'LOTTO'
                         : activeTab === 'Slot'
-                          ? 'Slot'
+                          ? 'SLOT'
                           : activeTab === 'Sport'
-                            ? 'Sport'
-                            : 'Home'}
+                            ? 'SPORT'
+                            : 'HOME'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={1}>
