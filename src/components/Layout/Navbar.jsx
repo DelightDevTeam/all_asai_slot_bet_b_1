@@ -118,7 +118,7 @@ const Navbar = () => {
         <Button
           variant='primary'
           onClick={handleShow}
-          className='bg-transparent'
+          className='bg-transparent sideMenu'
         >
           <i className='fa-solid fa-bars'></i>
         </Button>
@@ -153,7 +153,7 @@ const Navbar = () => {
         </div>
         {!auth && (<>
           <NavLink to={'/login'}>
-            <button className=' navLoginBtn'>လော့ဂ်အင်</button>
+            <button className=' navLoginBtn'>LOGIN</button>
           </NavLink>
           <div className='d-sm-none ' >
             <LuLogIn size={23} />
@@ -166,13 +166,14 @@ const Navbar = () => {
       </div>
 
       <Offcanvas
+        placement='top'
         show={show}
         onHide={handleClose}
         className=' '
         style={{ color: '#ccc' }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className='fw-bold' style={{fontSize:'16px'}}>
+          <Offcanvas.Title className='fw-bold' style={{ fontSize: '16px' }}>
             အသေးစိတ်အချက်လက်များ
           </Offcanvas.Title>
         </Offcanvas.Header>
@@ -183,7 +184,7 @@ const Navbar = () => {
                 <li
                   key={sidebar.id}
                   className='my-4 fw-bold'
-                  style={{ fontSize: '12px' }}
+                  style={{ fontSize: '15px' }}
                 >
                   <Link
                     to={sidebar.link}

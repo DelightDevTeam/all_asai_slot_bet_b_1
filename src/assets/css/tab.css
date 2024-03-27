@@ -1,19 +1,24 @@
 .tabs {
     width: 120px;
     /* height: 90px; */
-    border-radius: 10px;
+    border-radius: 10px !important;
     margin-bottom: 7px;
     background: linear-gradient(-45deg, #000, #333);
+
+    color: #bbbdbf;
     box-shadow: 0 2px 5px #000;
-    color: goldenrod;
+    /* color: goldenrod; */
     text-shadow: 0 0 2px gold;
     text-align: center;
-    padding: 0;
+    padding: 5px 8px;
 }
 
-.tab-imgs {
-    margin-top: 8px;
+.tabs:hover {
+    color: inherit;
+    text-shadow: none !important;
 }
+
+
 
 .nav {
     padding: 0 !important;
@@ -52,53 +57,59 @@ marquee {
     padding: 4px;
 }
 
-@media screen and (max-width:1010px) {
+
+
+
+
+@media screen and (max-width:700px) {
     .tabs {
-        width: 90px;
+        font-size: 13px !important;
     }
 
-
-}
-
-@media screen and (max-width:900px) {
-    .tabs {
-        height: 70px;
-    }
-}
-
-@media screen and (min-width:576px) {}
-
-@media screen and (max-width:576px) {
-    .tabs {
-        height: 60px;
+    .tabs img {
+        height: 25px;
     }
 }
 
-@media screen and (max-width:575px) {}
 
 
+@media screen and (max-width:680px) {
+    .tabs {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .tabs {
+        width: 95px;
+        height: 10vw;
+    }
+
+    .tabs img {
+        height: 20px;
+    }
+}
 
 @media screen and (max-width:400px) {
+
+    .tabs {
+        width: 85px;
+        height: 10vw;
+        font-size: 12px !important;
+    }
+
     .row span {
         font-size: 12px !important;
         margin: 0;
         padding: 0;
     }
 
-    .nav-pills .nav-link {
-        font-size: 13px;
-        margin-bottom: 4px;
-    }
 
-    .tab-imgs {
-        margin-top: 10px;
-        height: 25px;
-        width: 25px;
 
-    }
+
 
     marquee {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .sound {
@@ -108,26 +119,48 @@ marquee {
     }
 }
 
-@media screen and (max-width:370px) {
+@media screen and (max-width:350px) {
     .tabs {
-        height: 60px;
-        width: 70px;
+        width: 85px;
+        font-size: 11px !important;
+
     }
 
+}
 
+@media screen and (max-width:340px) {
+    .tabs {
+        width: 80px;
+        border: 8px;
+    }
+
+    .tabs img {
+        height: 18px;
+
+    }
 }
 
 @media screen and (max-width:300px) {
     .nav-link {
         padding: 5px 0 5px 5px !important;
     }
+
+    .tabs {
+        width: 75px;
+    }
+
+
+
+
 }
+
+
 
 .nav-pills .nav-link.active {
     background: linear-gradient(-45deg, rgb(232, 185, 97), rgb(240, 202, 132));
     color: #00393A;
     font-weight: 700;
-    text-shadow: 0 0 1px #000;
+    text-shadow: 0 0 1px #00393A;
 }
 
 .text-title {
