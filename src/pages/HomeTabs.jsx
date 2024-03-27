@@ -97,7 +97,7 @@ const HomeTabs = () => {
   return (
     <div className='px-2 mt-sm-4'>
       <div className="pt-2 px-sm-5">
-        <Carouselslidetwo></Carouselslidetwo>
+        {/* <Carouselslidetwo></Carouselslidetwo> */}
         <div className="marqueeContainer mt-1 mt-sm-0 mb-sm-2">
           <AiFillSound className='sound' />
           <marquee className='' >
@@ -113,7 +113,7 @@ const HomeTabs = () => {
           <Col xs={2} md={2} lg={1} className=' '>
             <Nav
               variant='pills'
-              className='flex-column  pt-4'
+              className='flex-column  pt-4 mt-5'
               style={{ minHeight: '100vh' }}
             >
               {tabs.map((tab, index) => {
@@ -121,7 +121,7 @@ const HomeTabs = () => {
                   <Nav.Item key={index}>
                     <Nav.Link
                       onClick={() => setActiveTab(tab.title)}
-                      className='text-decoration-none mb-2 tabs'
+                      className='text-decoration-none mb-2   tabs d-flex align-items-center justify-content-center gap-1 gap-sm-2'
                       to={tab.link}
                       eventKey={tab.id}
                     >
