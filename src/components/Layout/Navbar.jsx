@@ -35,13 +35,13 @@ const Navbar = () => {
   const navs = [
     { id: 1, img: home, title: 'အိမ်', link: '/' },
     { id: 2, img: promotion, title: 'ပရိုမိုးရှင်း', link: '/promotion' },
-    { id: 3, img: viber, title: 'Viber', link: '/' },
-    { id: 4, img: tele, title: 'Telegram', link: '/' },
+    { id: 3, img: viber, title: 'ဂိမ်းမှတ်တမ်း', link: '/' },
+    { id: 4, img: tele, title: 'မှတ်တမ်း', link: '/' },
   ];
 
   const sidebars = [
-    { id: 1, font: '', title: 'ဂိမ်းအားလုံး', link: '/' },
-    // { id: 2, font: 'fa-solid fa-building-columns', title: 'ငွေသွင်းရန်', link: '/topup' },
+    { id: 1, font: 'fa-solid fa-gamepad', title: 'ဂိမ်းအားလုံး', link: '/' },
+    { id: 2, font: 'fa-solid fa-gift', title: 'ပရိုမိုးရှင််း', link: '/promotions' },
     {
       id: 3,
       font: 'fa-solid fa-clipboard-list',
@@ -56,18 +56,12 @@ const Navbar = () => {
     },
     {
       id: 5,
-      font: 'fa-solid fa-user-pen',
+      font: 'fa-solid fa-key',
       title: 'လျှိ့ဝှက်နံပါတ်ပြောင်းရန်',
       link: '/change-password',
     },
     // { id: 6, font: 'fa-solid fa-coins', title: 'ငွေထုတ်ရန်', link: '/withdraw' },
     // {id:7,font:'fa-solid fa-file-invoice',title:'ငွေသွင်း/ထုတ်မှတ်တမ်း',link:'/'},
-    {
-      id: 7,
-      font: 'fa-solid fa-arrow-right-from-bracket',
-      title: 'ထွက်ရန်',
-      link: '/',
-    },
   ];
 
   const [show, setShow] = useState(false);
@@ -106,8 +100,8 @@ const Navbar = () => {
       });
   };
   return (
-    <header className='py-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
-      <div>
+    <header className='d-flex flex-wrap align-items-center justify-content-center'>
+      {/* <div className='d-flex align-items-center justify-content-between'>
         <Button
           variant='primary'
           onClick={handleShow}
@@ -115,53 +109,103 @@ const Navbar = () => {
         >
           <i className='fa-solid fa-bars'></i>
         </Button>
-        <NavLink to={'/'}>
-          <img src={logo} />
-        </NavLink>
-      </div>
-
-      <div className='d-flex align-items-center  gap-4 '>
-        <div className='d-none d-lg-flex align-items-center gap-4  '>
-          {navs.map((nav) => {
-            return (
-              <NavLink
-                key={nav.id} // Add key here
-                style={{
-                  background: '#2D2D2D',
-                  border: '2px solid #431F76',
-                  width: '100px',
-                }}
-                className='rounded-bottom-4 py-1 text-decoration-none text-center text-light'
-                to={nav.link}
-              >
-                <img style={{ width: '30px', height: '30px' }} src={nav.img} />
-                <p style={{ fontSize: '14px' }} className='mt-1'>
-                  {nav.title}
-                </p>
-              </NavLink>
-            );
-          })}
-        </div>
-        {!auth && (
-          <NavLink to={'/login'}>
-            <button className=' navLoginBtn'>လော့ဂ်အင်</button>
+        <div className="me-auto">
+          <NavLink to={'/'}>
+            <img src={logo} />
           </NavLink>
-        )}
+        </div>
 
-        {/* <NavLink to={'/register'}>
-          <button className='navRegisterBtn'>မှတ်ပုံတင်</button>
-        </NavLink> */}
+        <div className='d-block d-md-none ms-auto'>
+          <LuLogIn size={23} onClick={logOut} />
+        </div>
+      </div> */}
+      <div className="container d-flex justify-content-between align-items-center">
+        <div className='d-flex align-items-center justify-content-between w-100 mb-2'>
+          <div className="">
+            <NavLink to={'/'}>
+              <img src={logo} />
+            </NavLink>
+          </div>
+          <div className='d-block d-md-none ms-auto'>
+            <LuLogIn size={23} onClick={logOut} />
+          </div>
+        </div>
+        <div className=''>
+          <div className='d-none d-lg-flex align-items-center gap-4  '>
+            {navs.map((nav) => {
+              return (
+                <NavLink
+                  key={nav.id} // Add key here
+                  style={{
+                    background: '#2D2D2D',
+                    border: '2px solid #431F76',
+                    width: '100px',
+                  }}
+                  className='rounded-bottom-4 py-1 text-decoration-none text-center text-light'
+                  to={nav.link}
+                >
+                  <img style={{ width: '30px', height: '30px' }} src={nav.img} />
+                  <p style={{ fontSize: '14px' }} className='mt-1'>
+                    {nav.title}
+                  </p>
+                </NavLink>
+              );
+            })}
+          </div>
+          {!auth && (
+            <NavLink to={'/login'}>
+              <button className=' navLoginBtn'>လော့ဂ်အင်</button>
+            </NavLink>
+          )}
+        </div>
+        <div style={{ cursor: 'pointer' }} className="d-none d-md-block">
+          {auth && (
+            <div className='d-flex align-items-center gap-1'>
+              <div className="d-flex align-items-center gap-1">
+                <FaUser />
+                <span>{ auth && user.user_name }</span>
+              </div>
+              <div className="d-flex align-items-center gap-1">
+                <LuWallet size={23} />
+                <span>K{parseFloat(user.balance).toLocaleString()}</span>
+              </div>
+              <div className='d-none d-md-block'>
+                <LuLogIn size={23} onClick={logOut} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
-      <Offcanvas
+        <div style={{ cursor: 'pointer' }} className="d-block d-md-none ms-auto pb-2">
+          {auth && (
+            <div className='d-flex align-items-center gap-2 justify-content-end'>
+              <div className="gap-2 d-flex align-items-center">
+                <FaUser />
+                <span>{ auth && user.user_name }</span>
+              </div>
+              <div className="gap-2 d-flex align-items-center">
+                <LuWallet size={23} />
+                <span>K{parseFloat(user.balance).toLocaleString()}</span>
+              </div>
+              <div className='d-none d-md-block'>
+                <LuLogIn size={23} onClick={logOut} />
+              </div>
+            </div>
+          )}
+        </div>
+      {/* <Offcanvas
         show={show}
         onHide={handleClose}
-        className='bg-dark'
-        style={{ color: '#ccc' }}
+        style={{ 
+          color: '#ccc', 
+          background : "linear-gradient(170deg, rgba(46,0,154,1) 0%, rgba(22,0,110,1) 100%, rgba(79,94,255,1) 100%)",
+          background : "rgb(46,0,154)"
+        }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className='fw-bold'>
-            အသေးစိတ်အချက်လက်များ
+          <Offcanvas.Title className=''>
+            <img src={logo} width={100} alt="" />
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -170,7 +214,7 @@ const Navbar = () => {
               return (
                 <li
                   key={sidebar.id}
-                  className='my-4 fw-bold'
+                  className='my-4'
                   style={{ fontSize: '16px' }}
                 >
                   <Link
@@ -189,27 +233,7 @@ const Navbar = () => {
             })}
           </ul>
         </Offcanvas.Body>
-      </Offcanvas>
-      <div style={{ cursor: 'pointer' }} className="mb-0 mb-md-4   mb-xl-0 d-flex align-items-center gap-4">
-        
-        {auth && (
-          <>
-            <div className="d-flex align-items-center gap-1">
-              <FaUser />
-              <span>{ auth && user.user_name }</span>
-            </div>
-            <div className="d-flex align-items-center gap-1">
-              <LuWallet size={23} />
-              <span>K{parseFloat(user.balance).toLocaleString()}</span>
-            </div>
-            <div>
-              <LuLogIn size={23} onClick={logOut} />
-            </div>
-          </>
-            
-        )}
-        
-      </div>
+      </Offcanvas> */}
     </header>
   );
 };
