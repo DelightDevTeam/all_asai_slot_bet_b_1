@@ -1,19 +1,24 @@
 .tabs {
     width: 120px;
     /* height: 90px; */
-    border-radius: 10px;
+    border-radius: 10px !important;
     margin-bottom: 7px;
     background: linear-gradient(-45deg, #000, #333);
+
+    color: #bbbdbf;
     box-shadow: 0 2px 5px #000;
-    color: goldenrod;
+    /* color: goldenrod; */
     text-shadow: 0 0 2px gold;
     text-align: center;
-    padding: 0;
+    padding: 5px 8px;
 }
 
-.tab-imgs {
-    margin-top: 8px;
+.tabs:hover {
+    color: inherit;
+    text-shadow: none !important;
 }
+
+
 
 .nav {
     padding: 0 !important;
@@ -25,53 +30,113 @@
     object-fit: cover;
 }
 
-@media screen and (max-width:1010px) {
-    .tabs {
-        width: 90px;
-    }
-
-
+.marqueeContainer {
+    position: relative;
 }
 
-@media screen and (max-width:900px) {
+marquee {
+    font-size: 16px;
+    background: -webkit-linear-gradient(top left, #00393A, #005D5F);
+    border: 2px solid #E09F52;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.sound {
+    position: absolute;
+    left: 10px;
+    top: 2px;
+    z-index: 99;
+    background: linear-gradient(to right, rgb(152 214 79) 0%, rgb(40 69 83) 100%);
+    color: #fff;
+    border: 1px solid #365b76;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    padding: 4px;
+}
+
+
+
+
+
+@media screen and (max-width:700px) {
     .tabs {
-        height: 70px;
+        font-size: 13px !important;
+    }
+
+    .tabs img {
+        height: 25px;
     }
 }
 
-@media screen and (min-width:576px) {}
 
-@media screen and (max-width:576px) {
+
+@media screen and (max-width:680px) {
     .tabs {
-        height: 60px;
+        width: 100px;
     }
 }
 
-@media screen and (max-width:575px) {}
+@media screen and (max-width:450px) {
+    .tabs {
+        width: 95px;
+        height: 10vw;
+    }
 
-
+    .tabs img {
+        height: 20px;
+    }
+}
 
 @media screen and (max-width:400px) {
+
+    .tabs {
+        width: 85px;
+        height: 10vw;
+        font-size: 12px !important;
+    }
+
     .row span {
         font-size: 12px !important;
         margin: 0;
         padding: 0;
     }
 
-    .nav-pills .nav-link {
-        font-size: 13px;
-        margin-bottom: 4px;
+
+
+
+
+    marquee {
+        font-size: 12px;
     }
 
-    .tab-imgs {
-        margin-top: 5px;
+    .sound {
+        left: 2px;
+        width: 30px;
+        height: 30px;
     }
 }
 
-@media screen and (max-width:370px) {
+@media screen and (max-width:350px) {
     .tabs {
-        height: 60px;
-        width: 70px;
+        width: 85px;
+        font-size: 11px !important;
+
+    }
+
+}
+
+@media screen and (max-width:340px) {
+    .tabs {
+        width: 80px;
+        border: 8px;
+    }
+
+    .tabs img {
+        height: 18px;
+
     }
 }
 
@@ -79,19 +144,30 @@
     .nav-link {
         padding: 5px 0 5px 5px !important;
     }
+
+    .tabs {
+        width: 75px;
+    }
+
+
+
+
 }
+
+
 
 .nav-pills .nav-link.active {
     background: linear-gradient(-45deg, rgb(232, 185, 97), rgb(240, 202, 132));
-    color: #333;
+    color: #00393A;
     font-weight: 700;
-    text-shadow: 0 0 1px #000;
+    text-shadow: 0 0 1px #00393A;
 }
 
 .text-title {
     font-weight: 700;
     padding: 5px 0 5px 0;
-    background-color: #111;
-    border: 2px solid gold;
+    /* background-color: #111; */
+    /* border-bottom: 2px solid #E09F52; */
+    text-shadow: 3px 3px 3px #E09F52;
 
 }

@@ -1,6 +1,7 @@
 footer {
-    background: linear-gradient(180deg, #6831ab, #1f0e41);
-    border-top: 2px solid #ccbf80;
+    /* For older browsers */
+    background: -webkit-linear-gradient(top left, #00393A, #005D5F);
+    border-top: 2px solid #E09F52;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -25,19 +26,23 @@ footer img {
     padding: 13px;
 } */
 
-@media screen and (max-width:410px) {
+@media screen and (max-width:500px) {
     p {
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    .middleIcon {
-        width: 60px;
-        height: 60px;
-    }
+
 }
 
-@media screen and (max-width:340px) {
+@media screen and (max-width:400px) {
     p {
         font-size: 12px;
     }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+
 }

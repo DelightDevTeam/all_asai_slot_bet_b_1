@@ -11,11 +11,11 @@ const PromotionPage = () => {
     {id:2,title:'ပရိုမိုးရှင်း: 🏮 GiveAway 🏮',img:p2}
   ]
   return (
-    <div className='py-5 px-3 px-sm-5'>
-      <div className="mx-auto shadow-lg  py-4 px-5 text-center fs-4 fw-bolder   promotionHeader">
-         ပရိုမိုးရှင်း
-      </div>
-      <div className="row my-5 gap-5 gap-sm-0">
+    <div className='py-3 px-3 px-sm-5'>
+      <p className="mx-auto  text-center fs-4 fw-bolder   promotionHeader">
+         Promotion
+      </p>
+      <div className="row my-3 gap-5 gap-sm-0">
         {promotionData.map((item)=>{
           return <div className="col-sm-6">
               <p>{item.title}</p>

@@ -1,31 +1,76 @@
-header{
-    background: linear-gradient(182deg,#6831ab,#1f0e41),url(/images/007.jpeg)50%;
-    box-shadow: 0 0 10px #000!important;
+header {
+    background: linear-gradient(to bottom right, #00393A, #005D5F);
+    /* For older browsers */
+    background: -webkit-linear-gradient(top left, #00393A, #005D5F);
+
+    box-shadow: 0 0 10px #000 !important;
 }
-header img{
+
+.logoImg {
+    border: 2px solid #E09F52;
     height: 60px;
-    width: auto;
+    width: 60px;
+    border-radius: 100%;
+    margin-left: 10px;
 }
-.btn-close{
+
+
+
+.userInfo span {
+    font-weight: 600;
+}
+
+.btn-close {
     --bs-btn-close-bg: url('../img/closeBtn.png') !important;
     background-image: url('../img/closeBtn.png') !important;
     width: 40px !important;
-    height: 40px !important; 
+    height: 40px !important;
 }
-.navLoginBtn{
-    background-image: linear-gradient(180deg,#3a3a3a,#101010),linear-gradient(125deg,#ffeed0,#a6761e 31.53%,#fff0d4 64.87%,#ffd382) !important;
-    color: #fff;
-    border-radius: 8px;
-    border: 2px solid gold !important;
-    padding: 5px 10px !important;
+
+.navLoginBtn {
+    /* background-image: linear-gradient(180deg, #3a3a3a, #101010), linear-gradient(125deg, #ffeed0, #a6761e 31.53%, #fff0d4 64.87%, #ffd382) !important;
+    color: #fff; */
+    /* background: #111111; */
+    /* color: #E09F52; */
+    /* color: #fff; */
+    border-radius: 15px;
+    /* border: 2px solid #E09F52 !important; */
+    /* border: 2px solid #E09F52; */
+    padding: 5px 20px !important;
     font-size: 16px !important;
     width: max-content !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
+    background: linear-gradient(to right, #005D5F 60%, rgb(152 214 79) 100%);
+    color: #fff;
+    /* border: 1px solid #365b76; */
+    /* background: -webkit-linear-gradient(top left, #00393A, #005D5F); */
+    border: 1px solid #ffc107;
 }
-.navRegisterBtn{
-    background-image: radial-gradient(100% 100% at 50% 0,#c69dff 0,#6b29bc 44%,#34185f 100%),linear-gradient(180deg,#fbb21f,#ffc107);
+
+.navRegisterBtn {
+    background-image: radial-gradient(100% 100% at 50% 0, #c69dff 0, #6b29bc 44%, #34185f 100%), linear-gradient(180deg, #fbb21f, #ffc107);
     color: #fff;
     border-radius: 8px;
     border: 2px solid gold;
     padding: 5px 10px;
+}
+
+@media screen and (max-width:380px) {
+    .navLoginBtn {
+        font-size: 13px !important;
+    }
+
+    .logoImg {
+        height: 50px;
+        width: 50px;
+    }
+
+    .userInfo {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+
+    .userInfo span {
+        font-size: 13px;
+    }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/css/tab.css';
 import Carouselslidetwo from './../components/Layout/Carouselslidetwo';
 // import fishbackground from '../../assets/img/fishbackground';
@@ -8,11 +8,11 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 
-import home from '../assets/img/sidemenu/home.png';
-import casino from '../assets/img/sidemenu/casino.png';
-import lotto from '../assets/img/sidemenu/lotto.png';
-import slot from '../assets/img/sidemenu/slot.png';
-import sport from '../assets/img/sidemenu/sport.png';
+import home from '../assets/img/sidemenu/home2.png';
+import casino from '../assets/img/sidemenu/casino2.png';
+import lotto from '../assets/img/sidemenu/lotto2.png';
+import slot from '../assets/img/sidemenu/slot2.png';
+import sport from '../assets/img/sidemenu/sport2.png';
 import viber from '../assets/img/sidemenu/viber.png';
 import telegram from '../assets/img/sidemenu/telegram.png';
 
@@ -32,6 +32,7 @@ import slot3 from '../assets/img/game/slot3.png';
 import slot4 from '../assets/img/game/slot4.png';
 import slot5 from '../assets/img/game/slot5.png';
 import slot6 from '../assets/img/game/slot6.png';
+import { AiFillSound } from "react-icons/ai";
 
 import sport1 from '../assets/img/game/sport1.png';
 import sport2 from '../assets/img/game/sport2.png';
@@ -44,7 +45,7 @@ import { useSearchParams } from 'react-router-dom';
 import '../assets/css/tab.css';
 import { NavLink } from 'react-router-dom';
 const HomeTabs = () => {
-  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState('home');
   const tabs = [
     { id: 1, img: home, title: 'All', link: '?tab=1' },
     { id: 2, img: casino, title: 'Casino', link: '?tab=2' },
@@ -94,26 +95,33 @@ const HomeTabs = () => {
   ];
 
   return (
-    <div className='px-2 mt-4'>
-      <div className="py-2 px-sm-5">
-        <Carouselslidetwo></Carouselslidetwo>
+    <div className='px-2 mt-sm-4'>
+      <div className="pt-2 px-sm-5">
+        {/* <Carouselslidetwo></Carouselslidetwo> */}
+        <div className="marqueeContainer mt-1 mt-sm-0 mb-sm-2">
+          <AiFillSound className='sound' />
+          <marquee className='' >
+            <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium quae saepe, alias ad maiores neque obcaecati ipsa adipisci eligendi, illo ut dicta, eaque quaerat ipsam ullam dolorum libero nulla amet.</span>
+          </marquee>
+        </div>
       </div>
       <Tab.Container
         id='left-tabs-example'
-        defaultActiveKey={Number(searchParams.get('tab')) || 1}
+        defaultActiveKey={1}
       >
         <Row>
           <Col xs={2} md={2} lg={1} className=' '>
             <Nav
               variant='pills'
-              className='flex-column  pt-4'
+              className='flex-column  pt-4 mt-5'
               style={{ minHeight: '100vh' }}
             >
               {tabs.map((tab, index) => {
                 return (
                   <Nav.Item key={index}>
                     <Nav.Link
-                      className='text-decoration-none mb-2 tabs'
+                      onClick={() => setActiveTab(tab.title)}
+                      className='text-decoration-none mb-2   tabs d-flex align-items-center justify-content-center gap-1 gap-sm-2'
                       to={tab.link}
                       eventKey={tab.id}
                     >
@@ -128,21 +136,19 @@ const HomeTabs = () => {
           <Col xs={9} md={10} className='ps-4 ms-3 ms-sm-0 ms-lg-5 p-0 '>
             <Tab.Content>
 
-              <div className='text-center mt-4 mt-lg-0'>
+              <div className='text-center mt-1 mt-lg-0'>
                 <h3 className='text-title'>
-                  {searchParams.get('tab') == ''
-                    ? 'All Games'
-                    : searchParams.get('tab') == 1
-                      ? 'All Games'
-                      : searchParams.get('tab') == 2
-                        ? 'Casino'
-                        : searchParams.get('tab') == 3
-                          ? 'Lotto'
-                          : searchParams.get('tab') == 4
-                            ? 'Slot'
-                            : searchParams.get('tab') == 5
-                              ? 'Sport'
-                              : 'Home'}
+                  {activeTab === 'All'
+                    ? 'Home'
+                    : activeTab === 'Casino'
+                      ? 'Casino'
+                      : activeTab === 'Lotto'
+                        ? 'Lotto'
+                        : activeTab === 'Slot'
+                          ? 'Slot'
+                          : activeTab === 'Sport'
+                            ? 'Sport'
+                            : 'Home'}
                 </h3>
               </div>
               <Tab.Pane className='container ' eventKey={1}>
