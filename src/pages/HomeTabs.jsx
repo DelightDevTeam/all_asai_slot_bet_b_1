@@ -97,7 +97,7 @@ const HomeTabs = () => {
   return (
     <div className='px-2 mt-sm-4'>
       <div className="pt-2 px-sm-5">
-        {/* <Carouselslidetwo></Carouselslidetwo> */}
+        <Carouselslidetwo></Carouselslidetwo>
         <div className="marqueeContainer mt-1 mt-sm-0 mb-sm-2">
           <AiFillSound className='sound' />
           <marquee className='' >
