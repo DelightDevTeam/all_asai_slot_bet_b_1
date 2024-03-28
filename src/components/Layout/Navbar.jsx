@@ -3,7 +3,7 @@ import '../../assets/css/navbar.css';
 import logo from '../../assets/img/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import classic from '../../assets/img/classic.png';
 import home from '../../assets/img/home.png';
 import promotion from '../../assets/img/promotion.png';
 import viber from '../../assets/img/viber.png';
@@ -173,8 +173,9 @@ const Navbar = () => {
         style={{ color: '#ccc' }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className='fw-bold' style={{ fontSize: '16px' }}>
-            အသေးစိတ်အချက်လက်များ
+          <Offcanvas.Title className='mt-4 ps-3 fw-bold d-flex align-items-center gap-2' style={{ fontSize: '16px' }}>
+            <img src={classic} style={{ width: '40px', height: '40px' }} />
+            <h5 className='mt-1 text-light'>WELCOME!</h5>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>

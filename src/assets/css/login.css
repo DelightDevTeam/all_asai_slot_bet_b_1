@@ -6,9 +6,8 @@
     width: 50%;
 }
 
-.login h1 {
+.login h5 {
     /* margin-top: 40px; */
-    font-size: 24px;
     font-weight: 600;
     text-align: center;
     padding-bottom: 15px;
@@ -18,24 +17,35 @@
 .input-group-text {
     background: #005D5F !important;
     color: #fff !important;
-    padding: 15px !important;
+    padding: 10px 15px !important;
 }
 
-input::placeholder{
+input::placeholder {
     background: #005D5F !important;
     color: #fff !important;
+    padding: 10px;
+}
+
+input {
+    background: #005D5F !important;
+    color: #fff !important;
+
+}
+
+input:focus {
+    outline: none;
 }
 
 .loginBtn {
-    background: linear-gradient(145deg,  rgb(152 214 79) 5%, #005D5F 90%, rgb(152 214 79) 5%);
+    background: linear-gradient(145deg, rgb(152 214 79) 5%, #005D5F 80%, rgb(152 214 79) 5%);
     /* background: #005D5F; */
     color: #fff;
     font-weight: 600;
     border-radius: 25px;
-    padding: 15px;
-    width: 100%;
-    font-size: 20px;
-    border: 2px solid #00393A!important;
+    padding: 10px;
+    width: 80%;
+    font-size: 18px;
+    border: 2px solid #00393A !important;
 }
 
 @media screen and (max-width:650px) {
@@ -44,8 +54,22 @@ input::placeholder{
     }
 }
 
+@media screen and (max-width:500px) {
+    .loginBtn {
+        padding: 8px;
+        width: 80%;
+        font-size: 16px;
+    }
+}
+
 @media screen and (max-width:430px) {
     .logo {
         width: 80%;
+    }
+}
+
+@media screen and (max-width:350px) {
+    .login {
+        width: 100% !important;
     }
 }

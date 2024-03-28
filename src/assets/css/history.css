@@ -1,36 +1,66 @@
-.customTabs {
-    background: #a9aeb2;
-    border-radius: 10px;
-    padding: 5px 5px !important;
-    box-sizing: border-box !important;
-    width: 90%;
-
+.historyTitle {
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.customTabs .nav-link {
+.history .active {
+    border-bottom: 2px solid #f6e500;
+    color: #ffffff;
+    filter: drop-shadow(0px 0px 6px #34abff), 0px 0px 6px #34abff;
+    text-shadow: 0px 0px 12px #fae584, 0px 0px 12px #fae584, 0px 0px 12px #fae584, 0px 0px 12px #fae584;
+}
+
+
+
+th {
+    background: #509D57 !important;
+    color: #fff !important;
+}
+
+td {
+    background: #fff !important;
     color: #000 !important;
-    padding: 4px 10px !important;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-.customTabs .nav-link:hover {
-    border: none !important;
+@media screen and (max-width:500px) {
+    .historyTitle {
+        font-size: 14px;
+    }
 }
 
-.customTabs .nav-link.active {
-    color: #0d6efd !important;
-    border-radius: 8px !important;
+@media screen and (max-width:480px) {
 
+    th,
+    td {
+        font-size: 14px;
+    }
 }
 
-@media screen and (max-width:460px) {
-    .customTabs .nav-link {
+@media screen and (max-width:420px) {
+
+    th,
+    td {
+        font-size: 13px;
+        padding: 8px 2px !important;
+    }
+}
+
+@media screen and (max-width:350px) {
+    .historyTitle {
         font-size: 13px;
     }
 
     th,
     td {
         font-size: 13px;
+        padding: 3px 2px !important;
     }
 
+}
+
+@media screen and (max-width:300px) {
+    .historyTitle {
+        font-size: 12px;
+    }
 }

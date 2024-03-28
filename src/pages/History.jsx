@@ -5,25 +5,25 @@ import '../assets/css/history.css'
 const HistoryPage = () => {
     const [param, setParam] = useState("today");
     return (
-        <div className='py-4 container'>
-            <h1 className="mb-5 text-center text-light">History</h1>
+        <div className='py-4 container history'>
+            <h1 className="mb-4 mb-sm-5 text-center text-light">History</h1>
             <div className="d-flex mb-3">
-                <button
-                    className={`btn btn-sm btn-outline-warning m-md-2 m-1 ${param == "today" ? "active" : ""}`}
+                <p
+                    className={`historyTitle me-3 me-sm-4   ${param == "today" ? "active" : ""}`}
                     onClick={() => setParam("today")}
-                >Today</button>
-                <button
-                    className={`btn btn-sm btn-outline-warning m-md-2 m-1 ${param == "yesterday" ? "active" : ""}`}
+                >Today</p>
+                <p
+                    className={` historyTitle me-3 me-sm-4 ${param == "yesterday" ? "active" : ""}`}
                     onClick={() => setParam("yesterday")}
-                >Yesterday</button>
-                <button
-                    className={`btn btn-sm btn-outline-warning m-md-2 m-1 ${param == "this_week" ? "active" : ""}`}
+                >Yesterday</p>
+                <p
+                    className={`historyTitle me-3 me-sm-4 ${param == "this_week" ? "active" : ""}`}
                     onClick={() => setParam("this_week")}
-                >This Week</button>
-                <button
-                    className={`btn btn-sm btn-outline-warning m-md-2 m-1 ${param == "last_week" ? "active" : ""}`}
+                >This Week</p>
+                <p
+                    className={`historyTitle  ${param == "last_week" ? "active" : ""}`}
                     onClick={() => setParam("last_week")}
-                >Last Week</button>
+                >Last Week</p>
             </div>
             <div className="table-responsive text-center">
                 <table className="table table-transparent">
@@ -36,13 +36,21 @@ const HistoryPage = () => {
                             <th>ပမာဏ (ကျပ်)</th>
                             <th>အချိန်</th>
                         </tr>
+
                     </thead>
                     <tbody>
-
+                        <tr>
+                            <td>1</td>
+                            {/* <th>ဂိမ်းအခြေအနေ</th> */}
+                            <td>400</td>
+                            <td>Slot</td>
+                            <td>500</td>
+                            <td>12:00</td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <p className='text-center text-danger'>Data များ မရှိသေးပါ။</p>
+
 
             </div>
 
