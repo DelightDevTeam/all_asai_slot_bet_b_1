@@ -19,21 +19,21 @@ const LoginPage = () => {
 
   const auth = localStorage.getItem("token");
   const navigate = useNavigate();
-  
-  if(auth){
+
+  if (auth) {
     useEffect(() => {
       navigate("/"); // Navigate to the home route
     }, [navigate]);
   }
 
-  const handleLogin = (e) =>{
+  const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     const loginData = {
-        user_name: name,
-        password: password
+      user_name: name,
+      password: password
     };
-    
+
     fetch(BASE_URL + '/login', {
       method: 'POST',
       headers: {
@@ -51,22 +51,22 @@ const LoginPage = () => {
           } catch (error) {
             console.error('Error parsing JSON:', error);
           }
-    
+
           if (response.status === 422) {
             setErrMsg("");
             setError(errorData.errors);
             // console.error(`Login failed with status ${response.status}:`, errorData);
-          }else if (response.status === 401) {
+          } else if (response.status === 401) {
             // console.error(`Login failed with status ${response.status}:`, errorData);
             setError("");
             setErrMsg(errorData.message)
-          }else{
+          } else {
             console.error(`Unexpected error with status ${response.status}`);
           }
-    
+
           throw new Error('Login Failed');
         }
-    
+
         return response.json();
       })
       .then(data => {
@@ -83,7 +83,7 @@ const LoginPage = () => {
       .catch(error => {
         // console.error('Login error:', error);
       });
-    }
+  }
 
 
   return (
@@ -91,13 +91,13 @@ const LoginPage = () => {
       {/* <div className='text-center'>
         <img src={logo} className='logo' />
       </div> */}
-      <h1>လော့ဂ်အင်ဝင်ရန်</h1>
+      <h5 className='fw-bold text-center'>လော့ဂ်အင်ဝင်ရန်</h5>
       <form onSubmit={handleLogin}>
-      {errMsg && (
-        <div className="alert alert-danger text-white">
-          *{errMsg}
-        </div>
-      )}
+        {errMsg && (
+          <div className="alert alert-danger text-white">
+            *{errMsg}
+          </div>
+        )}
         <div className='mx-3 mx-sm-5 my-3 my-sm-5'>
           <div className="mb-3">
             <InputGroup className=''>
@@ -105,16 +105,16 @@ const LoginPage = () => {
                 <FaUser />
               </InputGroup.Text>
               <Form.Control
-              className='px-0'
+                className='px-0 loginForm'
                 placeholder='Username'
                 aria-label='Username'
                 aria-describedby='basic-addon1'
-                value={name} 
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </InputGroup>
             {error.user_name && (
-                <div className="text-danger d-block">*{error.user_name}</div>
+              <div className="text-danger d-block">*{error.user_name}</div>
             )}
           </div>
 
@@ -124,7 +124,7 @@ const LoginPage = () => {
                 <FaLock />
               </InputGroup.Text>
               <Form.Control
-              className='px-0'
+                className='px-0 loginForm'
                 type='password'
                 placeholder='Password'
                 aria-label='Password'
@@ -133,20 +133,22 @@ const LoginPage = () => {
               />
             </InputGroup>
             {error.password && (
-                <span className="text-danger d-block">*{error.password}</span>
+              <span className="text-danger d-block">*{error.password}</span>
             )}
           </div>
 
 
 
-          <button className='loginBtn'>
-          {loading && <SmallSpinner />}
-            Login
-          </button>
+          <div className="text-center">
+            <button className='loginBtn'>
+              {loading && <SmallSpinner />}
+              Login
+            </button>
+          </div>
         </div>
       </form>
 
-      <div
+      {/* <div
         style={{ cursor: 'pointer' }}
         className='px-3 px-sm-5 d-flex align-items-center justify-content-between'
       >
@@ -154,7 +156,7 @@ const LoginPage = () => {
           အကောင့်ဖွင့်ရန်
         </NavLink>
         <p className='mt-3'> ဆက်သွယ်ရန် </p>
-      </div>
+      </div> */}
     </div>
   );
 };
