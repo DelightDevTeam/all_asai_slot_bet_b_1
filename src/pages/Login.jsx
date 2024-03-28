@@ -87,10 +87,10 @@ const LoginPage = () => {
 
 
   return (
-    <div className='my-5 login py-3 py-sm-5 w-50 mx-auto'>
-      <div className='text-center'>
+    <div className='my-3 login py-3 py-sm-5 w-50 mx-auto'>
+      {/* <div className='text-center'>
         <img src={logo} className='logo' />
-      </div>
+      </div> */}
       <h1>လော့ဂ်အင်ဝင်ရန်</h1>
       <form onSubmit={handleLogin}>
       {errMsg && (
@@ -105,6 +105,7 @@ const LoginPage = () => {
                 <FaUser />
               </InputGroup.Text>
               <Form.Control
+              className='px-0'
                 placeholder='Username'
                 aria-label='Username'
                 aria-describedby='basic-addon1'
@@ -123,6 +124,7 @@ const LoginPage = () => {
                 <FaLock />
               </InputGroup.Text>
               <Form.Control
+              className='px-0'
                 type='password'
                 placeholder='Password'
                 aria-label='Password'

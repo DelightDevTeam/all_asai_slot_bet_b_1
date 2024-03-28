@@ -1,17 +1,17 @@
 .login {
     /* background: linear-gradient(182deg, #6831ab, #1f0e41), url('../img/login.png') 50%;
     box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0.3rem 0.3rem 5rem rgb(0 0 0), 0 0 0.8rem #fff, 0 0 1.8rem #1e0204, inset 0 0 1.3rem #000; */
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     border-radius: 15px;
     width: 50%;
 }
 
 .login h1 {
-    margin-top: 40px;
+    /* margin-top: 40px; */
     font-size: 24px;
     font-weight: 600;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     border-bottom: 2px solid white;
 }
 
@@ -21,13 +21,14 @@
     padding: 15px !important;
 }
 
-input {
+input::placeholder{
     background: #005D5F !important;
     color: #fff !important;
 }
 
 .loginBtn {
-    background: #005D5F;
+    background: linear-gradient(145deg,  rgb(152 214 79) 5%, #005D5F 90%, rgb(152 214 79) 5%);
+    /* background: #005D5F; */
     color: #fff;
     font-weight: 600;
     border-radius: 25px;
