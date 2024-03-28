@@ -12,14 +12,14 @@ function ChangePasswordPage() {
         <Form className='p-4 cgPwForm'>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
             <Form.Label>စကားဝှက်အသစ်</Form.Label>
-            <Form.Control type="password" placeholder="စကားဝှက်အသစ်"/>
+            <Form.Control type="password" placeholder="စကားဝှက်အသစ်" className='px-0'/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>စကားဝှက်အသစ်ကို အတည်ပြုပါ။</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" placeholder="Password" className='px-0'/>
         </Form.Group>
         <div className="cgPwBtn">
-            <Button   type="submit" className='text-dark fw-bold' style={{background:'#bb8e4e'}}>
+            <Button   type="submit" className='text-light fw-bold' style={{background: 'linear-gradient(145deg,  rgb(152 214 79) 5%, #005D5F 90%, rgb(152 214 79) 5%'}}>
             အတည်ပြုပါ။
             </Button>
         </div>
