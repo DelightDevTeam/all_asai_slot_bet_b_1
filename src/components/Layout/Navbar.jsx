@@ -206,10 +206,12 @@ const Navbar = () => {
         </Offcanvas.Body>
       </Offcanvas>
       <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4 userInfo">
-        <div className="d-flex align-items-center gap-1">
-          <FaUser />
-          <span>ID:123</span>
-        </div>
+        <NavLink to={'/profile'}>
+          <div className="d-flex align-items-center gap-1">
+            <FaUser />
+            <span>ID:123</span>
+          </div>
+        </NavLink>
         <div className="d-flex align-items-center gap-1">
           <LuWallet size={23} />
           <span>1000MMK</span>

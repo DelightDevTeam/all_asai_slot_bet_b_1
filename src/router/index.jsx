@@ -12,6 +12,7 @@ import TransferLog from '../pages/TransferLog';
 import HomeTabsPage from '../pages/HomeTabs';
 import HistoryPage from '../pages/History';
 import GameLogPage from '../pages/GameLog';
+import ProfilePage from '../pages/Profile';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/promotion',
         element: <PromotionPage />,
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />
       },
       {
         path: '/history',
