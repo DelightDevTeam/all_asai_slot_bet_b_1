@@ -17,6 +17,11 @@ body {
     padding-bottom: 100px;
 }
 
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
     display: none !important;
