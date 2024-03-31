@@ -15,8 +15,7 @@ import useFetch from '../../hooks/useFetch';
 import BASE_URL from '../../hooks/baseURL';
 
 const Carouselslidetwo = () => {
-  const banners2 = [carousel1, carousel2, carousel3, carousel4];
-  // const { data: banners, loading, error } = useFetch(BASE_URL + '/banner');
+  const { data: banners, loading, error } = useFetch(BASE_URL + '/banner');
 
   // if (loading) {
   //   return <div>Loading...</div>;
@@ -49,11 +48,11 @@ const Carouselslidetwo = () => {
       navigation={true}
       modules={[Autoplay, Pagination]}
     >
-      {banners2.map((banner, index) => {
+      {banners && banners.map((banner, index) => {
         return (
           <SwiperSlide key={index}>
             <img
-              src={banner}
+              src={banner.img_url}
               className='w-100'
               alt={`Banner ${index}`}
             />

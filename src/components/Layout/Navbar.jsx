@@ -69,12 +69,12 @@ const Navbar = () => {
     },
     // { id: 6, font: 'fa-solid fa-coins', title: 'ငွေထုတ်ရန်', link: '/withdraw' },
     // {id:7,font:'fa-solid fa-file-invoice',title:'ငွေသွင်း/ထုတ်မှတ်တမ်း',link:'/'},
-    {
-      id: 7,
-      icon: <IoMdLogOut size={25} />,
-      title: 'ထွက်ရန်',
-      link: '/',
-    },
+    // {
+    //   id: 7,
+    //   icon: <IoMdLogOut size={25} />,
+    //   title: 'ထွက်ရန်',
+    //   link: '/',
+    // },
   ];
 
   const [show, setShow] = useState(false);
@@ -103,7 +103,7 @@ const Navbar = () => {
       })
       .then((data) => {
         localStorage.removeItem("token");
-        localStorage.removeItem("authUser");
+        // localStorage.removeItem("authUser");
         // alert("Logged Out Successfully.");
         setSmallLoad(false);
         navigate("/login");
@@ -114,17 +114,20 @@ const Navbar = () => {
   };
   return (
     <header className='py-2 py-sm-3 py-lg-0 px-3 px-sm-5 d-flex flex-wrap align-items-center  justify-content-between '>
-      <div>
-        <Button
-          variant='primary'
-          onClick={handleShow}
-          className='bg-transparent sideMenu'
-        >
-          <i className='fa-solid fa-bars'></i>
-        </Button>
-        <NavLink to={'/'} >
-          <img src={logo} className='logoImg' />
-        </NavLink>
+      <div className='d-flex align-items-center w-sm-100 justify-content-between'>
+        <div>
+          <Button
+            variant='primary'
+            onClick={handleShow}
+            className='bg-transparent sideMenu '
+          >
+            <i className='fa-solid fa-bars'></i>
+          </Button>
+          <NavLink to={'/'} >
+            <img src={logo} className='logoImg' />
+          </NavLink>
+        </div>
+        
       </div>
 
       <div className='d-flex align-items-center  gap-4 '>
@@ -151,13 +154,17 @@ const Navbar = () => {
             );
           })}
         </div>
-        {!auth && (<>
+        {!auth && (
+        <>
           <NavLink to={'/login'}>
             <button className=' navLoginBtn'>LOGIN</button>
           </NavLink>
-          <div className='d-sm-none ' >
-            <LuLogIn size={23} />
-          </div></>
+          </>
+        )}
+        {auth && (
+          <div className='d-md-none d-sm-block' >
+              <LuLogIn size={23} style={{ "cursor" : "pointer" }} onClick={logOut} />
+          </div>
         )}
 
         {/* <NavLink to={'/register'}>
@@ -205,23 +212,26 @@ const Navbar = () => {
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
-      <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4 userInfo">
-        <NavLink to={'/profile'}>
+
+      {auth && (
+        <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4 userInfo">
+          <button className="btn btn-sm text-white" onClick={()=>window.location.reload()}><i className="fas fa-rotate"></i></button>
+          <NavLink to={'/profile'}>
+            <div className="d-flex align-items-center gap-1">
+              <FaUser />
+              <span>ID:{user.user_name}</span>
+            </div>
+          </NavLink>
           <div className="d-flex align-items-center gap-1">
-            <FaUser />
-            <span>ID:123</span>
+            <LuWallet size={23} />
+            <span>K{parseFloat(user.balance).toLocaleString()}</span>
           </div>
-        </NavLink>
-        <div className="d-flex align-items-center gap-1">
-          <LuWallet size={23} />
-          <span>1000MMK</span>
+          <div className='d-none d-sm-flex' >
+            <LuLogIn size={23} style={{ "cursor" : "pointer" }} onClick={logOut} />
+          </div>
         </div>
-        <div className='d-none d-sm-flex' >
-          <LuLogIn size={23} />
-        </div>
+      )}
 
-
-      </div>
     </header>
   );
 };

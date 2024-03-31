@@ -41,20 +41,59 @@ import sport4 from '../assets/img/game/sport4.png';
 import sport5 from '../assets/img/game/sport5.png';
 import sport6 from '../assets/img/game/sport6.png';
 
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import '../assets/css/tab.css';
 import { NavLink } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
+import BASE_URL from '../hooks/baseURL';
+
 const HomeTabs = () => {
   const [activeTab, setActiveTab] = useState('home');
-  const tabs = [
-    { id: 1, img: home, title: 'All', link: '?tab=1' },
-    { id: 2, img: casino, title: 'Casino', link: '?tab=2' },
-    { id: 3, img: lotto, title: 'Lotto', link: '?tab=3' },
-    { id: 4, img: slot, title: 'Slot', link: '?tab=4' },
-    { id: 5, img: sport, title: 'Sport', link: '?tab=5' },
-    // { id: 6, img: viber, title: '', link: '/' },
-    // { id: 7, img: telegram, title: '', link: '/' }
-  ];
+  const {data: gameTypes} = useFetch(BASE_URL + "/gameType");
+  // console.log(gameTypes);
+
+  const slots = gameTypes[0]?.products;
+  const slotCode = gameTypes[0]?.code;
+  const casinos = gameTypes[1]?.products;
+  const casinoCode = gameTypes[1]?.code;
+  const sports = gameTypes[2]?.products;
+  const sportCode = gameTypes[2]?.code;
+  const fishes = gameTypes[3]?.products;
+  const fishCode = gameTypes[3]?.code;
+
+  const lauchGame = (productCode, gameTypeCode) => {
+    let gameData = {
+      productId: productCode,
+      gameType: gameTypeCode
+    }
+    fetch(BASE_URL + "/game/Seamless/LaunchGame", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(gameData)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Launch Game failed");
+        }
+        console.log("Launch Game success");
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data.data);
+        // window.location.href = data.data;
+        window.open(data.Url, '_blank');
+      })
+      .catch((error) => {
+        console.error("Launch Game error:", error);
+      });
+  }
+
+
+
   const homeContents = [
     { id: 1, img: casino1, title: 'casino1' },
     { id: 2, img: slot1, title: 'slot1' },
@@ -107,7 +146,7 @@ const HomeTabs = () => {
       </div>
       <Tab.Container
         id='left-tabs-example'
-        defaultActiveKey={1}
+        defaultActiveKey={0}
       >
         <Row>
           <Col xs={2} md={2} lg={1} className=' '>
@@ -116,17 +155,27 @@ const HomeTabs = () => {
               className='flex-column  pt-4 mt-1'
               style={{ minHeight: '100vh' }}
             >
-              {tabs.map((tab, index) => {
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => setActiveTab("All")}
+                  className='text-decoration-none mb-2 tabs d-flex align-items-center justify-content-start gap-1 gap-sm-2'
+                  eventKey={0}
+                >
+                  <img src={home} alt='' className='tab-imgs' />
+                  <div>All</div>
+                </Nav.Link>
+              </Nav.Item>
+              {gameTypes && gameTypes.map((tab, index) => {
                 return (
                   <Nav.Item key={index}>
                     <Nav.Link
-                      onClick={() => setActiveTab(tab.title)}
-                      className='text-decoration-none mb-2   tabs d-flex align-items-center justify-content-center gap-1 gap-sm-2'
-                      to={tab.link}
+                      onClick={() => setActiveTab(tab.name)}
+                      className='text-decoration-none mb-2   tabs d-flex align-items-center gap-1 gap-sm-2'
+                      // to={tab.link}
                       eventKey={tab.id}
                     >
-                      <img src={tab.img} alt='' className='tab-imgs' />
-                      <div>{tab.title}</div>
+                      <img src={tab.img_url} alt='' className='tab-imgs' />
+                      <div>{tab.name}</div>
                     </Nav.Link>
                   </Nav.Item>
                 );
@@ -137,111 +186,178 @@ const HomeTabs = () => {
             <Tab.Content>
 
               <div className='text-center mt-1 mt-lg-0'>
-                <h3 className='text-title mb-0 '>
+                <h3 className='text-title mb-2 '>
                   {activeTab === 'All'
-                    ? 'HOME'
-                    : activeTab === 'Casino'
-                      ? 'CASINO'
-                      : activeTab === 'Lotto'
-                        ? 'LOTTO'
-                        : activeTab === 'Slot'
-                          ? 'SLOT'
-                          : activeTab === 'Sport'
-                            ? 'SPORT'
-                            : 'HOME'}
+                    ? 'All Games'
+                    : activeTab === 'Live Casino'
+                      ? 'Live Casino'
+                      : activeTab === 'Slot'
+                        ? 'Slot'
+                        : activeTab === 'Sport Book'
+                          ? 'Sport Book'
+                          : activeTab === 'Fishing'
+                            ? 'Fishing'
+                            : 'All Games'}
                 </h3>
               </div>
+
+              {/* all */}
+              <Tab.Pane className='container ' eventKey={0}>
+                <div>
+                  <div className="mb-3 mb-md-5 row">
+                  {slots && slots.map((data, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, slotCode)}
+                      >
+                        {/* <span>{data.name}</span> */}
+                        <img
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
+                        />
+                      </Link>
+                    );
+                  })}
+                  </div>
+                  <div className="mb-3 mb-md-5 row">
+                  {casinos && casinos.map((data, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, casinoCode)}
+                      >
+                        {/* <span>{data.name}</span> */}
+                        <img
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
+                        />
+                      </Link>
+                    );
+                  })}
+                  </div>
+                  <div className="mb-3 mb-md-5 row">
+                  {sports && sports.map((data, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, sportCode)}
+                      >
+                        {/* <span>{data.name}</span> */}
+                        <img
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
+                        />
+                      </Link>
+                    );
+                  })}
+                  </div>
+                  <div className="mb-3 mb-md-5 row">
+                  {fishes && fishes.map((data, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, fishCode)}
+                      >
+                        {/* <span>{data.name}</span> */}
+                        <img
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
+                        />
+                      </Link>
+                    );
+                  })}
+                  </div>
+                </div>
+              </Tab.Pane>
+              {/* slots */}
               <Tab.Pane className='container ' eventKey={1}>
                 <div className='row'>
-                  {homeContents.map((data, index) => {
+                  {slots && slots.map((data, index) => {
                     return (
-                      <div
+                      <Link
                         key={index}
-                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, slotCode)}
                       >
-                        <span>{data.title}</span>
+                        {/* <span>{data.name}</span> */}
                         <img
-                          style={{ width: '100%', height: '80%' }}
-                          className='rounded  img-fluid   '
-                          src={data.img}
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
               </Tab.Pane>
+              {/* live casino */}
               <Tab.Pane className='container ' eventKey={2}>
                 <div className='row'>
-                  {casinoContents.map((data, index) => {
+                  {casinos && casinos.map((data, index) => {
                     return (
-                      <div
+                      <Link
                         key={index}
-                        className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2  '
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, casinoCode)}
                       >
-                        <span>{data.title}</span>
+                        {/* <span>{data.name}</span> */}
                         <img
-                          style={{ width: '100%', height: '80%' }}
-                          className='rounded  img-fluid   '
-                          src={data.img}
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
               </Tab.Pane>
-              <Tab.Pane className='container ' eventKey={4}>
-                <div className='row'>
-                  {slotContents.map((data, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className=' col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
-                      >
-                        <span>{data.title}</span>
-                        <img
-                          style={{ width: '100%', height: '80%' }}
-                          className='rounded  img-fluid   '
-                          src={data.img}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </Tab.Pane>
+              {/* sportbooks */}
               <Tab.Pane className='container ' eventKey={3}>
                 <div className='row'>
-                  {lottoContents.map((data, index) => {
+                  {sports && sports.map((data, index) => {
                     return (
-                      <div
+                      <Link
                         key={index}
-                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, sportCode)}
                       >
-                        <span>{data.title}</span>
+                        {/* <span>{data.name}</span> */}
                         <img
-                          style={{ width: '100%', height: '80%' }}
-                          className='rounded  img-fluid   '
-                          src={data.img}
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
               </Tab.Pane>
-              <Tab.Pane className='container ' eventKey={5}>
+              {/* fishing */}
+              <Tab.Pane className='container ' eventKey={4}>
                 <div className='row'>
-                  {sportContents.map((data, index) => {
+                  {fishes && fishes.map((data, index) => {
                     return (
-                      <div
+                      <Link
                         key={index}
-                        className='col-4  p-1 col-md-4 col-lg-3 col-xl-2 my-2 '
+                        className='col-4 p-1 col-md-4 col-lg-3 col-xl-2'
+                        onClick={()=>lauchGame(data.code, fishCode)}
                       >
-                        <span>{data.title}</span>
+                        {/* <span>{data.name}</span> */}
                         <img
-                          style={{ width: '100%', height: '80%' }}
-                          className='rounded  img-fluid   '
-                          src={data.img}
+                          style={{ width: '100%', height: '100%' }}
+                          className='rounded-4  img-fluid   '
+                          src={data.imgUrl}
                         />
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
