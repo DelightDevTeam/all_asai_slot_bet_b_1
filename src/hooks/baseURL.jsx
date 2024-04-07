@@ -1,3 +1,3 @@
-const BASE_URL = 'https://maxwinapi.online/api';
+const BASE_URL = 'https://www.spidermanslotgame.online/api';
 
 export default BASE_URL;

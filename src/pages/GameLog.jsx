@@ -1,9 +1,24 @@
 import React, { useState } from 'react'
 import '../assets/css/history.css'
+import BASE_URL from '../hooks/baseURL';
+import useFetch from '../hooks/useFetch';
 
 
 const GameLogPage = () => {
+    const url = "/wager-logs?type=";
     const [param, setParam] = useState("today");
+    const {data: logs} = useFetch(BASE_URL+url+param);
+
+    console.log(logs);
+    const logRows = logs.map((log, index) => (
+        <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{log?.amount}</td>
+            <td>{log?.status}</td>
+            <td>{log?.datetime}</td>
+        </tr>
+    ));
+
     return (
         <div className='py-4 container history'>
             <h1 className="mb-4 mb-sm-5  text-center text-light">Game Log</h1>
@@ -11,18 +26,22 @@ const GameLogPage = () => {
                 <p
                     className={`historyTitle me-3 me-sm-4   ${param == "today" ? "active" : ""}`}
                     onClick={() => setParam("today")}
+                    style={{ 'cursor' : "pointer" }}
                 >Today</p>
                 <p
                     className={` historyTitle me-3 me-sm-4 ${param == "yesterday" ? "active" : ""}`}
                     onClick={() => setParam("yesterday")}
+                    style={{ 'cursor' : "pointer" }}
                 >Yesterday</p>
                 <p
                     className={`historyTitle me-3 me-sm-4 ${param == "this_week" ? "active" : ""}`}
                     onClick={() => setParam("this_week")}
+                    style={{ 'cursor' : "pointer" }}
                 >This Week</p>
                 <p
                     className={`historyTitle  ${param == "last_week" ? "active" : ""}`}
                     onClick={() => setParam("last_week")}
+                    style={{ 'cursor' : "pointer" }}
                 >Last Week</p>
             </div>
             <div className="table-responsive text-center">
@@ -30,30 +49,22 @@ const GameLogPage = () => {
                     <thead>
                         <tr>
                             <th>နံပါတ်</th>
-                            {/* <th>ဂိမ်းအခြေအနေ</th> */}
-                            <th>အပိတ်လက်ကျန်</th>
-                            <th>အမျိုးအစား</th>
-                            <th>ပမာဏ (ကျပ်)</th>
+                            <th>ပြန်ရငွေ</th>
+                            <th>နိုင်/ရှုံး</th>
                             <th>အချိန်</th>
                         </tr>
-
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            {/* <th>ဂိမ်းအခြေအနေ</th> */}
-                            <td>400</td>
-                            <td>Slot</td>
-                            <td>500</td>
-                            <td>12:00</td>
-                        </tr>
+                    <tbody className='text-dark'>
+                        {logRows.length > 0 ? logRows : 
+                        <tr className='text-center text-white'>
+                            <td colSpan={4}>မှတ်တမ်းမရှိသေးပါ။</td>
+                        </tr>}
                     </tbody>
                 </table>
 
 
 
             </div>
-
         </div>
     )
 }
