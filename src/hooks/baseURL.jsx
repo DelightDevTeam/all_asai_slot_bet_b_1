@@ -1,3 +1,3 @@
-const BASE_URL = 'https://www.spidermanslotgame.online/api';
+const BASE_URL = 'https://www.asaibetslot.online/api';
 
 export default BASE_URL;
