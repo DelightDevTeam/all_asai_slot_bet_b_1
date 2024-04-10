@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function ChangePasswordPage() {
-    return (<>
+    return (
+    <>
         <div className="cgPwTitle py-3 " style={{ fontSize: '16px' }}>
             <FaLock /> လျှို့ဝှတ်နံပါတ်အားမူလအတိုင်းပြန်လုပ်သည်
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/img/logo.png';
 import '../assets/css/login.css';
 import Form from 'react-bootstrap/Form';
@@ -26,13 +26,14 @@ const LoginPage = () => {
     }, [navigate]);
   }
 
-  const handleLogin = (e) => {
+  const login = (e) => {
     e.preventDefault();
     setLoading(true);
     const loginData = {
       user_name: name,
       password: password
     };
+    // console.log(loginData);
 
     fetch(BASE_URL + '/login', {
       method: 'POST',
@@ -42,46 +43,47 @@ const LoginPage = () => {
       },
       body: JSON.stringify(loginData)
     })
-      .then(async response => {
+      .then(async (response) => {
         if (!response.ok) {
+          const errData = await response.json();
+          setError(errData.errors)
           setLoading(false);
-          let errorData;
-          try {
-            errorData = await response.json();
-          } catch (error) {
-            console.error('Error parsing JSON:', error);
-          }
-
-          if (response.status === 422) {
-            setErrMsg("");
-            setError(errorData.errors);
-            // console.error(`Login failed with status ${response.status}:`, errorData);
-          } else if (response.status === 401) {
-            // console.error(`Login failed with status ${response.status}:`, errorData);
-            setError("");
-            setErrMsg(errorData.message)
-          } else {
-            console.error(`Unexpected error with status ${response.status}`);
-          }
-
-          throw new Error('Login Failed');
+          throw new Error("Log In Failed");
         }
-
         return response.json();
       })
-      .then(data => {
-        setData(data);
-        setLoading(false);
-        // console.log(data);
-        if (data.data.token) {
-          localStorage.setItem('token', data.data.token);
-          navigate('/');
+      .then((responseData) => {
+        // console.log(responseData);
+        if (responseData) {
+          const userData = responseData.data;
+          console.log('userData', userData);
+          if (userData.is_changed_password == 0) {
+            localStorage.setItem("user_id", responseData.data.id);
+            localStorage.setItem("is_changed_password", responseData.data.is_changed_password);
+            navigate("/new-player-change-password");
+            return;
+          }
+          localStorage.setItem("token", responseData.data.token);
+          localStorage.setItem(
+            "authUser",
+            JSON.stringify({
+              userData,
+            })
+          );
+          // window.location.href();
+
         } else {
-          throw new Error('Token not found in response');
+          throw new Error("Token not found in response");
         }
+        setLoading(false);
+        navigate("/");
       })
-      .catch(error => {
-        // console.error('Login error:', error);
+      .catch((error) => {
+        console.error(error);
+        if (error) {
+          setErrMsg("Phone Or Password is incorrect!");
+          setLoading(false);
+        }
       });
   }
 
@@ -92,7 +94,7 @@ const LoginPage = () => {
         <img src={logo} className='logo' />
       </div> */}
       <h5 className='fw-bold text-center'>လော့ဂ်အင်ဝင်ရန်</h5>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={login}>
         {errMsg && (
           <div className="alert alert-danger text-white">
             *{errMsg}

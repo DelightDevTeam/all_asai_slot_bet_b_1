@@ -13,6 +13,7 @@ import HomeTabsPage from '../pages/HomeTabs';
 import HistoryPage from '../pages/History';
 import GameLogPage from '../pages/GameLog';
 import ProfilePage from '../pages/Profile';
+import NewPlayerChangePassword from '../pages/NewPlayerChangePassword';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/game-log',
         element: <GameLogPage />,
+      },
+      {
+        path: '/new-player-change-password',
+        element: <NewPlayerChangePassword />,
       },
       {
         path: '/change-password',

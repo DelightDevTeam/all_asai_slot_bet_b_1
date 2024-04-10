@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../assets/css/navbar.css';
 import logo from '../../assets/img/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -10,9 +10,6 @@ import viber from '../../assets/img/viber.png';
 import tele from '../../assets/img/tele.png';
 import { IoGridOutline } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
-
-
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FaUser } from "react-icons/fa";
@@ -26,17 +23,16 @@ import useFetch from "../../hooks/useFetch";
 import BASE_URL from '../../hooks/baseURL';
 
 const Navbar = () => {
-  const auth = localStorage.getItem('token');
-  const { data: authUser } = useFetch(BASE_URL + '/user');
-  const [user, setUser] = useState(authUser);
-  const [smallLoad, setSmallLoad] = useState(false);
-  const navigate = useNavigate();
+  let auth = localStorage.getItem("token");
+  let [url, setUrl] = useState(BASE_URL + "/user");
+  const {data:user} = useFetch(url);
 
   useEffect(() => {
-    if (auth) {
-      setUser(authUser);
-    }
-  }, [authUser]);
+    setUrl(BASE_URL + "/user");
+  }, [url]);
+
+  let navigate = useNavigate();
+  let [smallLoad, setSmallLoad] = useState(false);
 
   // console.log(user);
   const navs = [
@@ -213,7 +209,7 @@ const Navbar = () => {
         </Offcanvas.Body>
       </Offcanvas>
 
-      {auth && (
+      {auth && user && (
         <div style={{ cursor: 'pointer' }} className="mt-2 mt-sm-0 mt-md-4  mt-lg-0 mb-0 mb-md-4   mb-xl-0 d-flex align-items-center  justify-content-between justify-content-sm-start gap-4 userInfo">
           <button className="btn btn-sm text-white" onClick={()=>window.location.reload()}><i className="fas fa-rotate"></i></button>
           <NavLink to={'/profile'}>
