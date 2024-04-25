@@ -12,11 +12,12 @@ const GameLogPage = () => {
     console.log(logs);
     const logRows = logs.map((log, index) => (
         <tr key={index}>
-            <td>{index + 1}</td>
-            <td>{log?.amount}</td>
-            <td>{log?.status}</td>
-            <td>{log?.datetime}</td>
-        </tr>
+        <td>{log.from_date}</td>
+        <td>{log.product}</td>
+        <td>{log.total_count}</td>
+        <td>{log.total_bet_amount}</td>
+        <td>{log.total_transaction_amount}</td>
+      </tr>
     ));
 
     return (
@@ -47,17 +48,18 @@ const GameLogPage = () => {
             <div className="table-responsive text-center">
                 <table className="table table-transparent">
                     <thead>
-                        <tr>
-                            <th>နံပါတ်</th>
-                            <th>ပြန်ရငွေ</th>
-                            <th>နိုင်/ရှုံး</th>
-                            <th>အချိန်</th>
-                        </tr>
+                    <tr>
+                        <th>Bet Time From</th>
+                        <th>Game Brand</th>
+                        <th>Count</th>
+                        <th>TotalBetAmount</th>
+                        <th>TotalNetWin</th>
+                    </tr>
                     </thead>
                     <tbody className='text-dark'>
                         {logRows.length > 0 ? logRows : 
                         <tr className='text-center text-white'>
-                            <td colSpan={4}>မှတ်တမ်းမရှိသေးပါ။</td>
+                            <td colSpan={5}>မှတ်တမ်းမရှိသေးပါ။</td>
                         </tr>}
                     </tbody>
                 </table>
