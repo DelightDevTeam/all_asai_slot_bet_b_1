@@ -3,14 +3,14 @@ import logo from '../assets/img/logo.png';
 import '../assets/css/login.css';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { FaUser } from 'react-icons/fa';
+import { FaPhoneVolume, FaUser } from 'react-icons/fa';
 import { FaLock } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import BASE_URL from '../hooks/baseURL';
 import SmallSpinner from '../components/Layout/SmallSpinner';
 
 const LoginPage = () => {
-  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [errMsg, setErrMsg] = useState('');
@@ -26,15 +26,15 @@ const LoginPage = () => {
     }, [navigate]);
   }
 
-  const login = (e) => {
+  const login = (e) =>{
     e.preventDefault();
     setLoading(true);
     const loginData = {
-      user_name: name,
-      password: password
+        phone: phone,
+        password: password
     };
     // console.log(loginData);
-
+    
     fetch(BASE_URL + '/login', {
       method: 'POST',
       headers: {
@@ -43,49 +43,54 @@ const LoginPage = () => {
       },
       body: JSON.stringify(loginData)
     })
-      .then(async (response) => {
+      .then(async response => {
         if (!response.ok) {
-          const errData = await response.json();
-          setError(errData.errors)
           setLoading(false);
-          throw new Error("Log In Failed");
+          let errorData;
+          try {
+            errorData = await response.json();
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+          }
+    
+          if (response.status === 422) {
+            setErrMsg("");
+            setError(errorData.errors);
+            // console.error(`Login failed with status ${response.status}:`, errorData);
+          }else if (response.status === 401) {
+            // console.error(`Login failed with status ${response.status}:`, errorData);
+            setError("");
+            setErrMsg(errorData.message)
+            setTimeout(() => {
+                setErrMsg("")
+            }, 1000)
+          }else{
+          }
+    
+          throw new Error('Login Failed');
         }
+    
         return response.json();
       })
-      .then((responseData) => {
-        // console.log(responseData);
-        if (responseData) {
-          const userData = responseData.data;
-          console.log('userData', userData);
-          if (userData.is_changed_password == 0) {
-            localStorage.setItem("user_id", responseData.data.id);
-            localStorage.setItem("is_changed_password", responseData.data.is_changed_password);
-            navigate("/new-player-change-password");
-            return;
-          }
-          localStorage.setItem("token", responseData.data.token);
-          localStorage.setItem(
-            "authUser",
-            JSON.stringify({
-              userData,
-            })
-          );
-          // window.location.href();
-
-        } else {
-          throw new Error("Token not found in response");
-        }
+      .then(data => {
+        setData(data);
         setLoading(false);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error(error);
-        if (error) {
-          setErrMsg("Phone Or Password is incorrect!");
-          setLoading(false);
+        // console.log(data);
+        if(data.data.is_changed_password === 0){
+          localStorage.setItem("auth", data.data.id)
+          navigate('/new-player-change-password');
+        }else{
+          if (data.data.token) {
+            localStorage.setItem('token', data.data.token);
+            navigate('/');
+          } else {
+            throw new Error('Token not found in response');
+          }
         }
+      })
+      .catch(error => {
       });
-  }
+    }
 
 
   return (
@@ -104,19 +109,19 @@ const LoginPage = () => {
           <div className="mb-3">
             <InputGroup className=''>
               <InputGroup.Text id='basic-addon1'>
-                <FaUser />
+                <FaPhoneVolume />
               </InputGroup.Text>
               <Form.Control
                 className='px-0 loginForm'
-                placeholder='Username'
+                placeholder='Phone'
                 aria-label='Username'
                 aria-describedby='basic-addon1'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </InputGroup>
-            {error.user_name && (
-              <div className="text-danger d-block">*{error.user_name}</div>
+            {error.phone && (
+              <div className="text-danger d-block">*{error.phone}</div>
             )}
           </div>
 
