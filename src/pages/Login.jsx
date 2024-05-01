@@ -8,90 +8,80 @@ import { FaLock } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import BASE_URL from '../hooks/baseURL';
 import SmallSpinner from '../components/Layout/SmallSpinner';
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [errMsg, setErrMsg] = useState('');
+  const [validated, setValidated] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState('');
-
-  const auth = localStorage.getItem("token");
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loginForm, setLoginForm] = useState({
+    username: "",
+    password: "",
+  });
   const navigate = useNavigate();
+  const form = useForm({
+    mode: "onTouched",
+  });
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
 
-  if (auth) {
-    useEffect(() => {
-      navigate("/"); // Navigate to the home route
-    }, [navigate]);
-  }
+  let auth = localStorage.getItem("authToken");
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+  }, [navigate]);
 
-  const login = (e) =>{
-    e.preventDefault();
+  const onSubmit = (loginData) => {
     setLoading(true);
-    const loginData = {
-        phone: phone,
-        password: password
-    };
-    // console.log(loginData);
-    
-    fetch(BASE_URL + '/login', {
-      method: 'POST',
+    //fetch api for login url
+    fetch(BASE_URL + "/login", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginData)
+      body: JSON.stringify(loginData),
     })
-      .then(async response => {
+      .then((response) => {
         if (!response.ok) {
-          setLoading(false);
-          let errorData;
-          try {
-            errorData = await response.json();
-          } catch (error) {
-            console.error('Error parsing JSON:', error);
-          }
-    
-          if (response.status === 422) {
-            setErrMsg("");
-            setError(errorData.errors);
-            // console.error(`Login failed with status ${response.status}:`, errorData);
-          }else if (response.status === 401) {
-            // console.error(`Login failed with status ${response.status}:`, errorData);
-            setError("");
-            setErrMsg(errorData.message)
-            setTimeout(() => {
-                setErrMsg("")
-            }, 1000)
-          }else{
-          }
-    
-          throw new Error('Login Failed');
+          throw new Error("Log In Failed");
         }
-    
         return response.json();
       })
-      .then(data => {
-        setData(data);
-        setLoading(false);
-        // console.log(data);
-        if(data.data.is_changed_password === 0){
-          localStorage.setItem("auth", data.data.id)
-          navigate('/new-player-change-password');
-        }else{
-          if (data.data.token) {
-            localStorage.setItem('token', data.data.token);
-            navigate('/');
-          } else {
-            throw new Error('Token not found in response');
+      .then((responseData) => {
+        // console.log(responseData);
+        if (responseData) {
+          const userData = responseData.data;
+          // console.log(userData);
+          if(userData.is_changed_password == 0){
+            localStorage.setItem("user_id", responseData.data.id);
+            localStorage.setItem("is_changed_password", responseData.data.is_changed_password);
+            navigate("/changePassword");
+            return;
           }
+            localStorage.setItem("authToken", responseData.data.token);
+            localStorage.setItem(
+              "authUser",
+              JSON.stringify({
+                userData,
+              })
+            );
+          
+        } else {
+          throw new Error("Token not found in response");
         }
+        setLoading(false);
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
+        console.error(error);
+        if (error) {
+          setErrorMessage("Phone Or Password is incorrect!");
+          setLoading(false);
+        }
       });
-    }
-
+  };
 
   return (
     <div className='my-3 login py-3 py-sm-5 w-50 mx-auto'>
@@ -99,12 +89,19 @@ const LoginPage = () => {
         <img src={logo} className='logo' />
       </div> */}
       <h5 className='fw-bold text-center'>လော့ဂ်အင်ဝင်ရန်</h5>
-      <form onSubmit={login}>
-        {errMsg && (
-          <div className="alert alert-danger text-white">
-            *{errMsg}
-          </div>
-        )}
+      {errorMessage && (
+                <div
+                  className="alert alert-danger mt-2"
+                  role="alert"
+                  style={{ fontSize: "14px" }}
+                >
+                  {errorMessage}
+                </div>
+              )}
+      <form 
+      onSubmit={handleSubmit(onSubmit)}
+      >
+        
         <div className='mx-3 mx-sm-5 my-3 my-sm-5'>
           <div className="mb-3">
             <InputGroup className=''>
@@ -112,17 +109,16 @@ const LoginPage = () => {
                 <FaPhoneVolume />
               </InputGroup.Text>
               <Form.Control
-                className='px-0 loginForm'
-                placeholder='Phone'
-                aria-label='Username'
-                aria-describedby='basic-addon1'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                 placeholder=' Player ID'
+                 aria-describedby='basic-addon1'
+                  {...register("user_name", {
+                  required: "Player ID is Required.",
+                })}
+                className={`${errors.username && "border-2 border-danger"} loginForm loginForm`}
               />
             </InputGroup>
-            {error.phone && (
-              <div className="text-danger d-block">*{error.phone}</div>
-            )}
+            <div className="d-block error text-danger">{errors.username?.message}</div>
+
           </div>
 
           <div className="mb-3">
@@ -131,23 +127,22 @@ const LoginPage = () => {
                 <FaLock />
               </InputGroup.Text>
               <Form.Control
-                className='px-0 loginForm'
-                type='password'
-                placeholder='Password'
-                aria-label='Password'
-                aria-describedby='basic-addon1'
-                value={password} onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Password..."
+                {...register("password", {
+                  required: "Password is Required.",
+                })}
+                className={`${errors.password && "border-2 border-danger"} px-0 loginForm`}
               />
+              
             </InputGroup>
-            {error.password && (
-              <span className="text-danger d-block">*{error.password}</span>
-            )}
+            <div className="d-block error text-danger">{errors.password?.message}</div>
           </div>
 
 
 
           <div className="text-center">
-            <button className='loginBtn'>
+            <button type='submit' className='loginBtn'>
               {loading && <SmallSpinner />}
               Login
             </button>
