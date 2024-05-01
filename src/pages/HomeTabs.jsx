@@ -50,8 +50,8 @@ import BASE_URL from '../hooks/baseURL';
 const HomeTabs = () => {
   const [activeTab, setActiveTab] = useState('home');
   const {data: gameTypes} = useFetch(BASE_URL + "/gameType");
-  // console.log(gameTypes);
-
+  const {data:bannerText} = useFetch(BASE_URL+"/bannerText");
+ 
   const slots = gameTypes[0]?.products;
   const slotCode = gameTypes[0]?.code;
   const casinos = gameTypes[1]?.products;
@@ -140,7 +140,7 @@ const HomeTabs = () => {
         <div className="marqueeContainer mt-1 mt-sm-0 mb-sm-2">
           <AiFillSound className='sound' />
           <marquee className='' >
-            <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium quae saepe, alias ad maiores neque obcaecati ipsa adipisci eligendi, illo ut dicta, eaque quaerat ipsam ullam dolorum libero nulla amet.</span>
+            <span>{bannerText?.text}</span>
           </marquee>
         </div>
       </div>

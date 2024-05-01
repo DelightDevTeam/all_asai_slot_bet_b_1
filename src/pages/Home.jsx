@@ -10,7 +10,6 @@ const HomePage = () => {
   return (
     <>
       <Carousel></Carousel>
-
       <Home></Home>
     </>
   )
