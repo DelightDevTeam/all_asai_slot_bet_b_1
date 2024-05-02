@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loginForm, setLoginForm] = useState({
     username: "",
+    phone:"",
     password: "",
   });
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const LoginPage = () => {
   }, [navigate]);
 
   const onSubmit = (loginData) => {
+    console.log('loginData',loginData)
     setLoading(true);
     //fetch api for login url
     fetch(BASE_URL + "/login", {
@@ -118,6 +120,23 @@ const LoginPage = () => {
               />
             </InputGroup>
             <div className="d-block error text-danger">{errors.username?.message}</div>
+
+          </div>
+          <div className="mb-3">
+            <InputGroup className=''>
+              <InputGroup.Text id='basic-addon1'>
+                <FaPhoneVolume />
+              </InputGroup.Text>
+              <Form.Control
+                 placeholder=' Phone'
+                 aria-describedby='basic-addon1'
+                  {...register("phone", {
+                  required: "Phone is Required.",
+                })}
+                className={`${errors.phone && "border-2 border-danger"} loginForm loginForm`}
+              />
+            </InputGroup>
+            <div className="d-block error text-danger">{errors.phone?.message}</div>
 
           </div>
 
