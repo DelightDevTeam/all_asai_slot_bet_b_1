@@ -12,7 +12,7 @@ export default function NewPlayerChangePassword() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
-  let auth = localStorage.getItem("token");
+  let auth = localStorage.getItem("authToken");
   let passwordChanged = localStorage.getItem('is_changed_password');
 
   useEffect(() => {
