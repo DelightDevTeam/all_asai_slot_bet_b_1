@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Spinner } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import BASE_URL from '../hooks/baseURL';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 export default function NewPlayerChangePassword() {
   const [password, setPassword] = useState('');
@@ -11,7 +12,7 @@ export default function NewPlayerChangePassword() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
-  let auth = localStorage.getItem("token");
+  let auth = localStorage.getItem("authToken");
   let passwordChanged = localStorage.getItem('is_changed_password');
 
   useEffect(() => {

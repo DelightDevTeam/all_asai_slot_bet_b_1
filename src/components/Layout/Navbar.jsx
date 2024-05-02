@@ -23,13 +23,15 @@ import useFetch from "../../hooks/useFetch";
 import BASE_URL from '../../hooks/baseURL';
 
 const Navbar = () => {
-  let auth = localStorage.getItem("token");
+  let auth = localStorage.getItem("authToken");
   let [url, setUrl] = useState(BASE_URL + "/user");
   const {data:user} = useFetch(url);
 
   useEffect(() => {
     setUrl(BASE_URL + "/user");
   }, [url]);
+  console.log('auth',auth)
+  console.log('user',user);
 
   let navigate = useNavigate();
   let [smallLoad, setSmallLoad] = useState(false);
@@ -87,7 +89,7 @@ const Navbar = () => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("authToken"),
       },
     })
       .then((response) => {
@@ -98,7 +100,7 @@ const Navbar = () => {
         return response.json();
       })
       .then((data) => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
         // localStorage.removeItem("authUser");
         // alert("Logged Out Successfully.");
         setSmallLoad(false);
